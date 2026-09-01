@@ -9,6 +9,7 @@ import CleanProjectModal from './components/CleanProjectModal.jsx';
 import CleanRepModal from './components/CleanRepModal.jsx';
 import CleanFooter from './components/CleanFooter.jsx';
 
+import JanNigraniRAGAssistant from './components/JanNigraniRAGAssistant.jsx';
 import ProminentLeadersSection from './components/ProminentLeadersSection.jsx';
 
 export default function App() {
@@ -22,7 +23,7 @@ export default function App() {
   const handleSelectArea = (areaId) => {
     setSelectedAreaId(areaId);
     setActiveTab('area');
-    window.scrollTo({ top: 750, behavior: 'smooth' });
+    window.scrollTo({ top: 900, behavior: 'smooth' });
   };
 
   const handleSelectRep = (repId) => {
@@ -55,7 +56,14 @@ export default function App() {
       {/* 3. Main Views */}
       <main className="flex-1 pb-16">
         {activeTab === 'area' && (
-          <div className="space-y-8">
+          <div className="space-y-6">
+            {/* Ask Jan Nigrani AI (Semantic RAG Assistant) */}
+            <JanNigraniRAGAssistant
+              onSelectRep={handleSelectRep}
+              onSelectArea={handleSelectArea}
+              onSelectProject={handleSelectProject}
+            />
+
             {/* Prominent National Leaders (BJP & Congress) Grid */}
             <ProminentLeadersSection
               onSelectRep={handleSelectRep}

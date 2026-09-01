@@ -9,9 +9,13 @@ const PORT = process.env.PORT || 5001;
 app.use(cors());
 app.use(express.json());
 
-// Initialize SQLite DB
-initDatabase().then(() => {
-  console.log("Database ready. Starting background Live Sync Engine...");
+import { runIncrementalIngestion } from './rag/ingestionEngine.js';
+import { executeRagQuery } from './rag/ragService.js';
+
+// Initialize SQLite DB & Semantic RAG Vector Store
+initDatabase().then(async () => {
+  console.log("Database ready. Running incremental RAG ingestion & starting Live Sync Engine...");
+  await runIncrementalIngestion();
   startAutoSync();
 }).catch(err => {
   console.error("Database initialization failed:", err);
@@ -107,6 +111,28 @@ app.get('/api/rag/delimitation', (req, res) => {
   );
 
   res.json(results);
+});
+
+// Incremental Ingestion Trigger API (MD5 Hash Check + Upsert)
+app.post('/api/rag/ingest', async (req, res) => {
+  try {
+    const stats = await runIncrementalIngestion();
+    res.json({ success: true, stats });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// Live Semantic RAG Query Inference API
+app.post('/api/rag/query', async (req, res) => {
+  try {
+    const { query } = req.body;
+    if (!query) return res.status(400).json({ error: 'Query is required' });
+    const response = await executeRagQuery(query);
+    res.json(response);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
 });
 
 // Area / Geography Details with Multi-tier Governance Resolution (Pradhan, Mayor, MLA, MP)
