@@ -175,15 +175,8 @@ export function initDatabase() {
         guidance_notes TEXT
       )`);
 
-      // Seed / re-seed full Pan-India dataset
-      db.get(`SELECT COUNT(*) as cnt FROM geographies`, [], (err, row) => {
-        if (err) return reject(err);
-        if (row.cnt < 15) {
-          seedPanIndiaDatabase(db, resolve, reject);
-        } else {
-          resolve(db);
-        }
-      });
+      // Seed / update full Pan-India dataset on startup
+      seedPanIndiaDatabase(db, resolve, reject);
     });
   });
 }
