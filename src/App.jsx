@@ -6,6 +6,7 @@ import CleanProjectsView from './components/CleanProjectsView.jsx';
 import CleanCompareView from './components/CleanCompareView.jsx';
 import CleanMethodologyView from './components/CleanMethodologyView.jsx';
 import CleanProjectModal from './components/CleanProjectModal.jsx';
+import CleanFooter from './components/CleanFooter.jsx';
 import { Zap, X, Download } from 'lucide-react';
 
 export default function App() {
@@ -145,28 +146,8 @@ export default function App() {
         </div>
       )}
 
-      {/* 5. Clean Footer */}
-      <footer className="border-t border-slate-100 bg-slate-50/50 py-8 text-xs text-slate-500 font-sans">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 flex flex-wrap items-center justify-between gap-4">
-          <div className="flex items-center gap-2 font-medium">
-            <span className="font-bold text-slate-800">Jan Nigrani</span>
-            <span>·</span>
-            <span>India Public Accountability Platform (PRD v0.1)</span>
-          </div>
-
-          <div className="flex items-center gap-4 font-mono">
-            <a
-              href={`/api/citation-pack?entityId=${selectedRepId}`}
-              download
-              className="inline-flex items-center gap-1.5 text-indigo-600 hover:text-indigo-800 font-semibold"
-            >
-              <Download className="w-3.5 h-3.5" />
-              <span>Export Citation Pack (JSON)</span>
-            </a>
-            <span>Continuous Live Sync Active</span>
-          </div>
-        </div>
-      </footer>
+      {/* 5. Clean Government Data Source Footer & Provenance Notes */}
+      <CleanFooter selectedRepId={selectedRepId} />
 
       {/* 6. Project Modal */}
       {selectedProjectId && (

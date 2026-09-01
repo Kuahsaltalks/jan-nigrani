@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Landmark, ArrowUpRight, CheckCircle2, Clock, AlertCircle, ChevronRight, ExternalLink, ShieldCheck } from 'lucide-react';
+import { Landmark, ArrowUpRight, CheckCircle2, Clock, AlertCircle, ChevronRight, ExternalLink, ShieldCheck, Database } from 'lucide-react';
 
 export default function CleanAreaView({ areaId = 'geo-varanasi', onSelectRep, onSelectProject, lang }) {
   const [areaData, setAreaData] = useState(null);
@@ -110,9 +110,49 @@ export default function CleanAreaView({ areaId = 'geo-varanasi', onSelectRep, on
             <div className="text-xs text-slate-400">shown separately from official data</div>
           </div>
         </div>
+
+        {/* 3. Direct Source Links & Verification Bar */}
+        <div className="pt-4 flex flex-wrap items-center justify-between gap-3 text-xs bg-slate-50 p-3.5 rounded-xl border border-slate-200/70">
+          <div className="flex items-center gap-2 text-slate-600 font-medium">
+            <Database className="w-3.5 h-3.5 text-indigo-600" />
+            <span>Official Sourced Portals for {geography.name}:</span>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-3 font-mono">
+            <a
+              href="https://mplads.gov.in/"
+              target="_blank"
+              rel="noreferrer"
+              className="text-indigo-600 hover:text-indigo-800 hover:underline flex items-center gap-1 font-semibold"
+            >
+              <span>MPLADS (MoSPI)</span>
+              <ExternalLink className="w-3 h-3" />
+            </a>
+            <span className="text-slate-300">·</span>
+            <a
+              href="https://panchayat.gov.in/en/lgd/"
+              target="_blank"
+              rel="noreferrer"
+              className="text-indigo-600 hover:text-indigo-800 hover:underline flex items-center gap-1 font-semibold"
+            >
+              <span>LGD #{geography.lgd_code}</span>
+              <ExternalLink className="w-3 h-3" />
+            </a>
+            <span className="text-slate-300">·</span>
+            <a
+              href="https://eprocure.gov.in/"
+              target="_blank"
+              rel="noreferrer"
+              className="text-indigo-600 hover:text-indigo-800 hover:underline flex items-center gap-1 font-semibold"
+            >
+              <span>CPPP Tenders</span>
+              <ExternalLink className="w-3 h-3" />
+            </a>
+          </div>
+        </div>
       </div>
 
-      {/* 3. Section: WHO GOVERNS HERE */}
+      {/* 4. Section: WHO GOVERNS HERE */}
       <div className="space-y-6">
         <div className="flex flex-wrap items-baseline justify-between gap-2">
           <div>
@@ -206,7 +246,7 @@ export default function CleanAreaView({ areaId = 'geo-varanasi', onSelectRep, on
         </div>
       </div>
 
-      {/* 4. Section: PUBLISHED WORKS & AUDIT TRAILS */}
+      {/* 5. Section: PUBLISHED WORKS & AUDIT TRAILS */}
       <div className="space-y-6 pt-4 border-t border-slate-100">
         <div className="flex flex-wrap items-baseline justify-between gap-2">
           <div>
@@ -273,6 +313,21 @@ export default function CleanAreaView({ areaId = 'geo-varanasi', onSelectRep, on
                     style={{ width: `${proj.physical_progress_pct}%` }}
                   ></div>
                 </div>
+              </div>
+
+              {/* Clickable Source Provenance Link */}
+              <div className="pt-2 flex items-center justify-between text-xs font-mono text-slate-400">
+                <span>Source: {proj.source_name}</span>
+                <a
+                  href={proj.source_url}
+                  target="_blank"
+                  rel="noreferrer"
+                  onClick={(e) => e.stopPropagation()}
+                  className="text-indigo-600 hover:text-indigo-800 hover:underline flex items-center gap-1 font-semibold"
+                >
+                  <span>Verify on Portal</span>
+                  <ExternalLink className="w-3 h-3" />
+                </a>
               </div>
             </div>
           ))}
