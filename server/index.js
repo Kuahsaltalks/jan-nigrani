@@ -47,11 +47,11 @@ app.get('/api/search', (req, res) => {
   const query = (req.query.q || '').trim();
   if (!query) return res.json({ geographies: [], persons: [], projects: [] });
 
-  const q = `%${query}%`;
+  const q = `%${query.toLowerCase()}%`;
   
-  db.all(`SELECT * FROM geographies WHERE name LIKE ? OR state_name LIKE ? OR lgd_code LIKE ? LIMIT 10`, [q, q, q], (err, geos) => {
-    db.all(`SELECT * FROM persons WHERE name LIKE ? OR party LIKE ? OR office_title LIKE ? LIMIT 10`, [q, q, q], (err, persons) => {
-      db.all(`SELECT * FROM projects WHERE title LIKE ? OR sector LIKE ? OR implementing_dept LIKE ? LIMIT 10`, [q, q, q], (err, projs) => {
+  db.all(`SELECT * FROM geographies WHERE LOWER(name) LIKE ? OR LOWER(state_name) LIKE ? OR LOWER(lgd_code) LIKE ? OR LOWER(id) LIKE ? LIMIT 10`, [q, q, q, q], (err, geos) => {
+    db.all(`SELECT * FROM persons WHERE LOWER(name) LIKE ? OR LOWER(party) LIKE ? OR LOWER(office_title) LIKE ? LIMIT 10`, [q, q, q], (err, persons) => {
+      db.all(`SELECT * FROM projects WHERE LOWER(title) LIKE ? OR LOWER(sector) LIKE ? OR LOWER(implementing_dept) LIKE ? LIMIT 10`, [q, q, q], (err, projs) => {
         res.json({
           geographies: geos || [],
           persons: persons || [],
