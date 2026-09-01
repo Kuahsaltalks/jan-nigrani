@@ -1,70 +1,43 @@
 import React, { useState, useEffect } from 'react';
-import LiveHeader from './components/LiveHeader.jsx';
-import AreaDashboard from './components/AreaDashboard.jsx';
-import MoneyTrailViewer from './components/MoneyTrailViewer.jsx';
-import RepresentativeProfile from './components/RepresentativeProfile.jsx';
-import ResponsibleResolver from './components/ResponsibleResolver.jsx';
-import StateSchemeRegistry from './components/StateSchemeRegistry.jsx';
-import CompareEngine from './components/CompareEngine.jsx';
-import InteractiveMap from './components/InteractiveMap.jsx';
-import LiveSyncMonitor from './components/LiveSyncMonitor.jsx';
-import CitizenEvidenceDesk from './components/CitizenEvidenceDesk.jsx';
-import ProjectDetailModal from './components/ProjectDetailModal.jsx';
-import { Zap, X } from 'lucide-react';
+import CleanHeader from './components/CleanHeader.jsx';
+import CleanHeroSearch from './components/CleanHeroSearch.jsx';
+import CleanAreaView from './components/CleanAreaView.jsx';
+import CleanProjectsView from './components/CleanProjectsView.jsx';
+import CleanCompareView from './components/CleanCompareView.jsx';
+import CleanMethodologyView from './components/CleanMethodologyView.jsx';
+import CleanProjectModal from './components/CleanProjectModal.jsx';
+import { Zap, X, Download } from 'lucide-react';
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState('control-room');
-  const [selectedAreaId, setSelectedAreaId] = useState('geo-1');
-  const [selectedRepId, setSelectedRepId] = useState('rep-1');
+  const [activeTab, setActiveTab] = useState('area'); // 'area', 'projects', 'compare', 'methodology'
+  const [selectedAreaId, setSelectedAreaId] = useState('geo-varanasi');
+  const [selectedRepId, setSelectedRepId] = useState('rep-modi');
   const [selectedProjectId, setSelectedProjectId] = useState(null);
-  const [recentLogs, setRecentLogs] = useState([]);
-  const [sseConnected, setSseConnected] = useState(false);
+  const [lang, setLang] = useState('en'); // 'en' or 'hi'
   const [liveToast, setLiveToast] = useState(null);
+  const [recentLogs, setRecentLogs] = useState([]);
 
-  // Fetch initial activity logs
-  useEffect(() => {
-    fetch('/api/live-logs')
-      .then(res => res.json())
-      .then(data => setRecentLogs(data || []))
-      .catch(console.error);
-  }, []);
-
-  // Connect to Real-time SSE Live Event Stream
+  // Connect to SSE Live Event Stream
   useEffect(() => {
     const eventSource = new EventSource('/api/live-stream');
-
-    eventSource.onopen = () => {
-      console.log('[SSE] Connected to Jan Nigrani Live Source Stream!');
-      setSseConnected(true);
-    };
 
     eventSource.addEventListener('live-delta', (e) => {
       try {
         const payload = JSON.parse(e.data);
-        console.log('[SSE EVENT RECEIVED]', payload);
-        setRecentLogs(prev => [payload, ...prev.slice(0, 29)]);
-
-        // Show live popup toast in bottom-right corner
+        setRecentLogs(prev => [payload, ...prev.slice(0, 19)]);
         setLiveToast(payload);
         setTimeout(() => {
           setLiveToast(current => (current && current.id === payload.id ? null : current));
-        }, 6000);
+        }, 5000);
       } catch (err) {
-        console.error('[SSE Error parsing data]', err);
+        console.error('[SSE Parse Error]', err);
       }
     });
 
-    eventSource.onerror = (err) => {
-      console.error('[SSE Connection Error]', err);
-      setSseConnected(false);
-    };
-
-    return () => {
-      eventSource.close();
-    };
+    return () => eventSource.close();
   }, []);
 
-  // Periodic polling fallback to guarantee real-time updates even if SSE closes in serverless environments
+  // Polling fallback
   useEffect(() => {
     const pollInterval = setInterval(() => {
       fetch('/api/live-logs')
@@ -74,26 +47,28 @@ export default function App() {
             setRecentLogs(prev => {
               if (prev.length > 0 && data[0].id !== prev[0].id) {
                 setLiveToast(data[0]);
-                setTimeout(() => setLiveToast(null), 6000);
+                setTimeout(() => setLiveToast(null), 5000);
               }
               return data;
             });
           }
         })
         .catch(() => {});
-    }, 5000);
+    }, 6000);
 
     return () => clearInterval(pollInterval);
   }, []);
 
   const handleSelectArea = (areaId) => {
     setSelectedAreaId(areaId);
-    setActiveTab('control-room');
+    setActiveTab('area');
+    window.scrollTo({ top: 400, behavior: 'smooth' });
   };
 
   const handleSelectRep = (repId) => {
     setSelectedRepId(repId);
-    setActiveTab('representatives');
+    setActiveTab('compare');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleSelectProject = (projId) => {
@@ -101,118 +76,101 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-900 text-slate-100 flex flex-col font-sans relative">
-      {/* Header */}
-      <LiveHeader
+    <div className="min-h-screen bg-white text-slate-900 flex flex-col font-sans selection:bg-indigo-500 selection:text-white">
+      {/* 1. Header */}
+      <CleanHeader
         activeTab={activeTab}
         setActiveTab={setActiveTab}
-        onSelectArea={handleSelectArea}
-        onSelectRep={handleSelectRep}
-        liveStatus={sseConnected}
-        recentLogs={recentLogs}
+        lang={lang}
+        setLang={setLang}
       />
 
-      {/* Main Content Body */}
-      <main className="flex-1 pb-12">
-        {activeTab === 'control-room' && (
-          <AreaDashboard
+      {/* 2. Hero Search Bar */}
+      <CleanHeroSearch
+        onSelectArea={handleSelectArea}
+        onSelectRep={handleSelectRep}
+        onSelectProject={handleSelectProject}
+        coverage={82}
+        lang={lang}
+      />
+
+      {/* 3. Main Views */}
+      <main className="flex-1 pb-16">
+        {activeTab === 'area' && (
+          <CleanAreaView
             areaId={selectedAreaId}
             onSelectRep={handleSelectRep}
             onSelectProject={handleSelectProject}
-            recentLogs={recentLogs}
+            lang={lang}
           />
         )}
 
-        {activeTab === 'money-trail' && (
-          <MoneyTrailViewer
+        {activeTab === 'projects' && (
+          <CleanProjectsView
             onSelectProject={handleSelectProject}
+            lang={lang}
           />
-        )}
-
-        {activeTab === 'representatives' && (
-          <RepresentativeProfile
-            repId={selectedRepId}
-            onSelectProject={handleSelectProject}
-          />
-        )}
-
-        {activeTab === 'responsible' && (
-          <ResponsibleResolver />
-        )}
-
-        {activeTab === 'state-schemes' && (
-          <StateSchemeRegistry />
         )}
 
         {activeTab === 'compare' && (
-          <CompareEngine
-            onSelectRep={handleSelectRep}
+          <CleanCompareView
+            lang={lang}
           />
         )}
 
-        {activeTab === 'map' && (
-          <InteractiveMap
-            onSelectProject={handleSelectProject}
-          />
-        )}
-
-        {activeTab === 'citizen-desk' && (
-          <CitizenEvidenceDesk />
-        )}
-
-        {activeTab === 'live-sync' && (
-          <LiveSyncMonitor
-            recentLogs={recentLogs}
-            sseConnected={sseConnected}
+        {activeTab === 'methodology' && (
+          <CleanMethodologyView
+            lang={lang}
           />
         )}
       </main>
 
-      {/* Live Transaction Delta Toast Notification */}
+      {/* 4. Live Delta Notification Toast */}
       {liveToast && (
-        <div className="fixed bottom-6 right-6 max-w-sm bg-slate-950 border border-emerald-500/50 p-4 rounded-2xl shadow-2xl z-50 animate-bounce space-y-2">
-          <div className="flex items-center justify-between">
-            <span className="flex items-center gap-1.5 text-emerald-400 text-xs font-mono font-bold">
-              <Zap className="w-3.5 h-3.5 text-amber-400" />
-              <span>LIVE RUPEE DELTA RECEIVED</span>
-            </span>
-            <button
-              onClick={() => setLiveToast(null)}
-              className="text-slate-500 hover:text-slate-200"
-            >
-              <X className="w-4 h-4" />
-            </button>
+        <div className="fixed bottom-6 right-6 max-w-sm bg-slate-900 text-white p-4 rounded-2xl shadow-2xl border border-slate-800 z-50 animate-fade-in flex items-start justify-between gap-3">
+          <div className="space-y-1 min-w-0 flex-1">
+            <div className="flex items-center gap-1.5 text-xs font-mono text-emerald-400 font-bold">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 live-dot"></span>
+              <span>LIVE SOURCE UPDATE</span>
+            </div>
+            <div className="text-sm font-bold text-slate-100 truncate">{liveToast.entity_name}</div>
+            <p className="text-xs text-slate-300 font-sans">{liveToast.description}</p>
           </div>
-          <div className="text-xs text-slate-100 font-bold">{liveToast.entity_name}</div>
-          <div className="text-emerald-400 font-mono text-sm font-extrabold">
-            +{liveToast.amount_delta < 100 ? `₹${liveToast.amount_delta}` : `₹${liveToast.amount_delta.toLocaleString('en-IN')}`}
-          </div>
-          <p className="text-[11px] text-slate-300 font-sans">{liveToast.description}</p>
+          <button
+            onClick={() => setLiveToast(null)}
+            className="text-slate-400 hover:text-white p-1"
+          >
+            <X className="w-4 h-4" />
+          </button>
         </div>
       )}
 
-      {/* Footer with Citation Pack Export Button */}
-      <footer className="border-t border-slate-800 bg-slate-950 py-6 text-xs font-mono text-slate-500">
-        <div className="max-w-7xl mx-auto px-4 flex flex-wrap items-center justify-between gap-4">
-          <div>
-            Jan Nigrani • India Public Accountability Graph (PRD v0.1 Specification)
+      {/* 5. Clean Footer */}
+      <footer className="border-t border-slate-100 bg-slate-50/50 py-8 text-xs text-slate-500 font-sans">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 flex flex-wrap items-center justify-between gap-4">
+          <div className="flex items-center gap-2 font-medium">
+            <span className="font-bold text-slate-800">Jan Nigrani</span>
+            <span>·</span>
+            <span>India Public Accountability Platform (PRD v0.1)</span>
           </div>
-          <div className="flex items-center gap-4">
+
+          <div className="flex items-center gap-4 font-mono">
             <a
-              href="/api/citation-pack?entityId=rep-1"
+              href={`/api/citation-pack?entityId=${selectedRepId}`}
               download
-              className="px-3 py-1 bg-amber-500/20 hover:bg-amber-500/30 text-amber-400 font-bold rounded border border-amber-400/30 transition-colors"
+              className="inline-flex items-center gap-1.5 text-indigo-600 hover:text-indigo-800 font-semibold"
             >
-              Export Citation Pack (JSON)
+              <Download className="w-3.5 h-3.5" />
+              <span>Export Citation Pack (JSON)</span>
             </a>
             <span>Continuous Live Sync Active</span>
           </div>
         </div>
       </footer>
 
-      {/* Project Audit Trail Modal */}
+      {/* 6. Project Modal */}
       {selectedProjectId && (
-        <ProjectDetailModal
+        <CleanProjectModal
           projectId={selectedProjectId}
           onClose={() => setSelectedProjectId(null)}
         />
