@@ -92,7 +92,11 @@ export function initDatabase() {
         approval_date TEXT,
         completion_date TEXT,
         source_name TEXT,
-        source_url TEXT
+        source_url TEXT,
+        proof_status TEXT,
+        proof_by TEXT,
+        proof_summary TEXT,
+        image_urls TEXT
       )`);
 
       // 6. Contracts & Procurement (CPPP)
@@ -203,8 +207,16 @@ function seedPanIndiaDatabase(db, resolve, reject) {
     panIndiaFundLedgers.forEach(fl => insertLedger.run(fl.id, fl.entity_id, fl.entity_type, fl.scheme_name, fl.fiscal_year, fl.entitled_amount, fl.allocated_amount, fl.released_amount, fl.sanctioned_amount, fl.expended_amount, fl.unspent_balance, fl.last_updated, fl.source_name, fl.source_url));
     insertLedger.finalize();
 
-    const insertProj = db.prepare(`INSERT OR REPLACE INTO projects VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`);
-    panIndiaProjects.forEach(pj => insertProj.run(pj.id, pj.source_work_id, pj.title, pj.sector, pj.geography_id, pj.recommender_id, pj.implementing_dept, pj.sanctioned_cost, pj.spent_cost, pj.status, pj.physical_progress_pct, pj.lat, pj.lon, pj.approval_date, pj.completion_date, pj.source_name, pj.source_url));
+    const insertProj = db.prepare(`INSERT OR REPLACE INTO projects VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`);
+    panIndiaProjects.forEach(pj => insertProj.run(
+      pj.id, pj.source_work_id, pj.title, pj.sector, pj.geography_id, pj.recommender_id, pj.implementing_dept,
+      pj.sanctioned_cost, pj.spent_cost, pj.status, pj.physical_progress_pct, pj.lat, pj.lon,
+      pj.approval_date, pj.completion_date, pj.source_name, pj.source_url,
+      pj.proof_status || 'UNVERIFIED_NO_PROOF',
+      pj.proof_by || 'None - No proof submitted',
+      pj.proof_summary || 'No proof submitted',
+      pj.image_urls || '[]'
+    ));
     insertProj.finalize();
 
   // State Schemes

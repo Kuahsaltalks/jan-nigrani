@@ -48,15 +48,15 @@ export default function CleanHeroSearch({ onSelectArea, onSelectRep, onSelectPro
   };
 
   const sampleChips = [
+    { label: 'Choti Ramdi (Kadkariya Gram Sabha)', id: 'geo-chhoti-ramdi' },
     { label: 'Haldwani', id: 'geo-nainital' },
     { label: 'Wayanad', id: 'geo-wayanad' },
     { label: 'Guwahati', id: 'geo-guwahati' },
     { label: 'Varanasi', id: 'geo-varanasi' },
     { label: 'Shillong', id: 'geo-shillong' },
     { label: 'Thiruvananthapuram', id: 'geo-tvm' },
-    { label: 'Assi', id: 'geo-varanasi' },
-    { label: 'water', id: 'geo-wayanad' },
-    { label: 'road', id: 'geo-nainital' }
+    { label: 'water', id: 'geo-chhoti-ramdi' },
+    { label: 'road', id: 'geo-chhoti-ramdi' }
   ];
 
   return (
@@ -81,7 +81,7 @@ export default function CleanHeroSearch({ onSelectArea, onSelectRep, onSelectPro
                 type="text"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                placeholder={lang === 'hi' ? 'स्थान, सांसद/विधायक, या परियोजना खोजें (उदा: Haldwani, Wayanad)...' : 'Search any constituency, city, MP/MLA, or project (e.g. Haldwani, Wayanad)...'}
+                placeholder={lang === 'hi' ? 'ग्राम सभा, शहर/मेयर, सांसद/विधायक या परियोजना खोजें (उदा: Choti Ramdi, Haldwani)...' : 'Search any Gram Sabha, Mayor, MP/MLA, or project (e.g. Choti Ramdi, Haldwani, Wayanad)...'}
                 className="w-full bg-white text-slate-900 placeholder-slate-400 rounded-2xl pl-5 pr-28 py-4 text-base sm:text-lg focus:outline-none focus:ring-4 focus:ring-indigo-500/20 transition-all font-sans"
               />
               <button

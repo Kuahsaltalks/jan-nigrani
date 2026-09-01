@@ -62,28 +62,60 @@ app.get('/api/search', (req, res) => {
   });
 });
 
-// Area / Geography Details
+// Area / Geography Details with Multi-tier Governance Resolution (Pradhan, Mayor, MLA, MP)
 app.get('/api/areas/:id', (req, res) => {
   const areaId = req.params.id;
 
   db.get(`SELECT * FROM geographies WHERE id = ? OR lgd_code = ?`, [areaId, areaId], (err, geo) => {
     if (!geo) return res.status(404).json({ error: 'Area not found' });
 
-    // Fetch overlapping representatives
-    db.all(`SELECT * FROM persons WHERE geography_id = ? OR geography_id IN (SELECT id FROM geographies WHERE parent_id = ?)`, [geo.id, geo.id], (err, reps) => {
-      // Fetch 5-account ledgers
-      db.all(`SELECT * FROM fund_ledgers WHERE entity_id = ? OR entity_id IN (SELECT id FROM persons WHERE geography_id = ?)`, [geo.id, geo.id], (err, ledgers) => {
-        // Fetch projects
-        db.all(`SELECT * FROM projects WHERE geography_id = ?`, [geo.id], (err, projs) => {
-          res.json({
-            geography: geo,
-            representatives: reps || [],
-            fund_ledgers: ledgers || [],
-            projects: projs || []
-          });
+    // Fetch related representatives across the full 4-tier statutory chain:
+    // 1. Direct rep (e.g. Gram Pradhan)
+    // 2. Child reps (if querying PC/AC)
+    // 3. Parent reps (MLA, MP)
+    // 4. Sibling reps (Mayor of parent ULB)
+    const relatedGeoIds = [
+      geo.id,
+      geo.parent_id,
+      'geo-nainital', 'geo-haldwani', 'geo-haldwani-ulb', 'geo-chhoti-ramdi',
+      'geo-varanasi', 'geo-varanasi-cantt', 'geo-varanasi-ulb', 'geo-chiraigaon',
+      'geo-wayanad', 'geo-kalpetta', 'geo-meppadi-gp', 'geo-tvm', 'geo-tvm-ulb',
+      'geo-guwahati', 'geo-guwahati-ulb', 'geo-shillong', 'geo-bangalore-south', 'geo-bbmp'
+    ];
+
+    db.all(`SELECT p.*, g.name as geography_name, g.type as geography_type 
+            FROM persons p 
+            JOIN geographies g ON p.geography_id = g.id
+            WHERE p.geography_id = ? 
+               OR p.geography_id = ? 
+               OR p.geography_id IN (SELECT id FROM geographies WHERE parent_id = ? OR parent_id = ? OR id = ?)
+               OR g.parent_id = ?`, 
+      [geo.id, geo.parent_id, geo.id, geo.parent_id, geo.parent_id, geo.id], 
+      (err, reps) => {
+        // Fetch 5-account ledgers
+        const repIds = (reps || []).map(r => r.id);
+        const placeholders = repIds.length > 0 ? repIds.map(() => '?').join(',') : "''";
+        
+        db.all(`SELECT * FROM fund_ledgers WHERE entity_id = ? OR entity_id IN (${placeholders})`, [geo.id, ...repIds], (err, ledgers) => {
+          // Fetch projects for this geography or immediate family
+          db.all(`SELECT p.*, g.name as geo_name, per.name as recommender_name 
+                  FROM projects p
+                  LEFT JOIN geographies g ON p.geography_id = g.id
+                  LEFT JOIN persons per ON p.recommender_id = per.id
+                  WHERE p.geography_id = ? OR p.geography_id = ? OR p.geography_id IN (SELECT id FROM geographies WHERE parent_id = ?)`, 
+            [geo.id, geo.parent_id, geo.id], 
+            (err, projs) => {
+              res.json({
+                geography: geo,
+                representatives: reps || [],
+                fund_ledgers: ledgers || [],
+                projects: projs || []
+              });
+            }
+          );
         });
-      });
-    });
+      }
+    );
   });
 });
 
