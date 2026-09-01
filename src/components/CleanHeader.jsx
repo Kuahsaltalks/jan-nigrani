@@ -24,7 +24,19 @@ export default function CleanHeader({ activeTab, setActiveTab, lang, setLang }) 
         </div>
 
         {/* Navigation Tabs */}
-        <nav className="flex items-center gap-4 sm:gap-6 text-xs sm:text-sm font-medium text-slate-600">
+        <nav className="flex items-center gap-3 sm:gap-5 text-xs sm:text-sm font-medium text-slate-600">
+          <button
+            onClick={() => setActiveTab('train')}
+            className={`transition-all flex items-center gap-1.5 px-3 py-1 rounded-xl ${
+              activeTab === 'train'
+                ? 'bg-amber-400 text-slate-950 font-bold shadow-md shadow-amber-400/30'
+                : 'text-amber-700 hover:text-amber-900 bg-amber-50 hover:bg-amber-100 font-semibold'
+            }`}
+          >
+            <span>🚂 {lang === 'hi' ? 'जन रथ एक्सप्रेस' : 'Delhi Train Map'}</span>
+            <span className="bg-rose-500 text-white text-[9px] font-mono px-1 rounded uppercase font-bold animate-pulse">Live</span>
+          </button>
+
           <button
             onClick={() => setActiveTab('tycoon')}
             className={`transition-all flex items-center gap-1.5 px-3 py-1 rounded-xl ${
@@ -33,8 +45,7 @@ export default function CleanHeader({ activeTab, setActiveTab, lang, setLang }) 
                 : 'text-indigo-600 hover:text-indigo-800 bg-indigo-50 hover:bg-indigo-100/70 font-semibold'
             }`}
           >
-            <span>🎮 {lang === 'hi' ? 'लीडर गेम' : 'Constituency Tycoon'}</span>
-            <span className="bg-amber-400 text-slate-950 text-[9px] font-mono px-1 rounded uppercase font-bold">New</span>
+            <span>🎮 {lang === 'hi' ? 'लीडर गेम' : 'Tycoon Sim'}</span>
           </button>
 
           <button
@@ -53,15 +64,6 @@ export default function CleanHeader({ activeTab, setActiveTab, lang, setLang }) 
             }`}
           >
             {lang === 'hi' ? 'परियोजनाएं' : 'Projects'}
-          </button>
-
-          <button
-            onClick={() => setActiveTab('compare')}
-            className={`transition-colors hover:text-slate-900 ${
-              activeTab === 'compare' ? 'text-slate-900 font-semibold border-b-2 border-slate-900 pb-0.5' : ''
-            }`}
-          >
-            {lang === 'hi' ? 'तुलना' : 'Compare'}
           </button>
         </nav>
 

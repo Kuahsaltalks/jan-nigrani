@@ -12,9 +12,10 @@ import CleanFooter from './components/CleanFooter.jsx';
 import JanNigraniRAGAssistant from './components/JanNigraniRAGAssistant.jsx';
 import ProminentLeadersSection from './components/ProminentLeadersSection.jsx';
 import ConstituencyTycoon from './components/ConstituencyTycoon.jsx';
+import JanRathTrainMap from './components/JanRathTrainMap.jsx';
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState('tycoon'); // Default to exciting tycoon experience!
+  const [activeTab, setActiveTab] = useState('train'); // Default to the visual train animation!
   const [selectedAreaId, setSelectedAreaId] = useState('geo-varanasi');
   const [selectedRepId, setSelectedRepId] = useState('rep-modi');
   const [selectedRepModalId, setSelectedRepModalId] = useState(null);
@@ -56,7 +57,43 @@ export default function App() {
 
       {/* 3. Main Views */}
       <main className="flex-1 pb-16">
-        {/* GAMIFIED CONSTITUENCY TYCOON VIEW */}
+        {/* VIEW 1: THE JAN RATH FUND EXPRESS (DELHI TO CONSTITUENCY TRAIN MAP) */}
+        {activeTab === 'train' && (
+          <div className="space-y-6">
+            <JanRathTrainMap
+              onSelectConstituency={(constId) => {
+                setSelectedAreaId(constId === 'haldwani' ? 'geo-chhoti-ramdi' : `geo-${constId}`);
+              }}
+            />
+
+            {/* Quick Link to Tycoon Game */}
+            <div className="max-w-7xl mx-auto px-4 sm:px-6">
+              <div 
+                onClick={() => setActiveTab('tycoon')}
+                className="bg-gradient-to-r from-indigo-900 via-purple-900 to-slate-950 p-5 sm:p-6 rounded-3xl text-white flex flex-wrap items-center justify-between gap-4 border border-indigo-500/30 shadow-xl cursor-pointer hover:border-indigo-400 transition-all group"
+              >
+                <div className="space-y-1">
+                  <div className="inline-flex items-center gap-2 text-xs font-mono font-bold tracking-widest text-amber-400 uppercase bg-amber-950/60 px-3 py-0.5 rounded-full border border-amber-800/60">
+                    <span>🎮 ALSO PLAY</span>
+                  </div>
+                  <h3 className="font-serif text-lg sm:text-xl font-bold text-white group-hover:text-indigo-200 transition-colors">
+                    Constituency Tycoon: Can You Outperform Your MP with ₹50 Crore?
+                  </h3>
+                  <p className="text-xs text-slate-300">
+                    Construct solar plants, schools, and hospitals on a 16-ward city grid and battle your MP's official CAG audit!
+                  </p>
+                </div>
+
+                <button className="bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold px-5 py-2.5 rounded-2xl text-xs flex items-center gap-1.5 transition-all shadow-md group-hover:scale-105 shrink-0">
+                  <span>Play Simulator</span>
+                  <span>&rarr;</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* VIEW 2: GAMIFIED CONSTITUENCY TYCOON SIMULATOR */}
         {activeTab === 'tycoon' && (
           <ConstituencyTycoon
             onExitGame={() => setActiveTab('area')}
