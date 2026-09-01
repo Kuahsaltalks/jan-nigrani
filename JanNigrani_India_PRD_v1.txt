@@ -1,0 +1,970 @@
+JAN NIGRANI
+Product Requirements Document
+India-wide public accountability platform for elected representatives, local governments and development spending
+Version 0.1  |  Research baseline: 31 August 2026  |  Status: Product discovery / PRD
+Primary launch
+MP -> MLA -> Mayor / ULB -> Gram Pradhan / Gram Panchayat
+Core promise
+Follow the money, the work, the evidence and the responsibility trail.
+Primary users
+Citizens • journalists • researchers • civil-society groups • local watchdogs
+MVP principle
+Source-first, role-aware and explicit about data completeness.
+Key differentiator
+A national entity + geography + fund-flow graph linking fragmented Indian public systems.
+Important product note: this platform must not turn “money spent in a constituency/city” into “money spent by the politician.” India’s public-finance architecture frequently assigns recommendation, sanction, execution, accounting and oversight to different actors. The product therefore separates these relationships throughout the data model and UI.
+
+1. Executive summary
+Jan Nigrani is proposed as a public accountability and development-intelligence platform for India. It aggregates publicly accessible government data into a user-friendly record of who represents a place, what public money is attached to that place, which projects were sanctioned and executed, what evidence exists, and which official or institution was actually responsible at each stage.
+The initial concept resembles Govvy at the “find your representatives and understand their public record” layer, but the Indian product should be built around India’s fragmented administrative and financial architecture rather than a US-style federal-legislative model. Govvy currently combines representative discovery, bill tracking, voting records, committee assignments, campaign finance and contact tools. [1]
+The research shows that many of the underlying ingredients already exist: MPLADS has constituency-, work- and GIS-oriented information; eGramSwaraj covers rural local-government profiling, planning, progress reporting, accounting, assets, geo-tagging and PFMS integration; LGD provides stable codes for states, districts, villages, panchayats, ULBs and wards; City Finance provides standardized municipal financial information; ECI exposes candidate affidavits and election results; parliamentary records support questions/debates; procurement and grievance systems add contract and responsiveness evidence. [2]-[12]
+The product opportunity is not simply “collect all data”. It is to reconcile these sources into a single, transparent accountability graph and then present the results with enough context to prevent misleading conclusions.
+Product thesis
+Build the best public “money -> project -> place -> responsible institution -> evidence” graph for India.
+Use geography as the default discovery path, because citizens think in terms of state, district, city, ward, village and constituency.
+Treat role and responsibility as first-class data, not an annotation.
+Show financial execution and delivery evidence separately; never collapse them into one simplistic productivity score.
+Make every number traceable to its source, reporting period, last refresh and confidence level.
+North-star outcome
+A citizen can search for a place, understand which representatives and institutions govern it, see public funds and projects relevant to that place, compare peers on like-for-like indicators, inspect primary evidence, and report or verify discrepancies.
+2. Problem statement
+India has abundant public information but low interoperability between systems. A citizen may need to consult ECI for the representative, MPLADS for MP-recommended works, a state portal for MLA funds, eGramSwaraj for panchayat works, City Finance for municipal finances, a scheme-specific MIS for a sector programme, an e-procurement portal for contracts, and CAG or audit records for assurance. The data is useful individually but difficult to combine.
+User pain points
+“Who is responsible for this road, drain, school, water project or public facility?”
+“How much money was actually allocated/released/sanctioned/spent—not just announced?”
+“Is this project part of a politician’s discretionary/constituency fund, a department programme, a local-body budget, or a central scheme?”
+“Why does another city/constituency appear to perform better?”
+“Can I verify the official claim with a government source, photo, map or audit document?”
+“The official says the work is complete. What public evidence supports that?”
+Single biggest product risk
+The platform can lose trust if it creates false attribution. For example, an MLA may recommend a work while a district authority sanctions it and a department or contractor executes it; a mayor may preside over a municipal corporation whose commissioner and engineering departments control execution. Even where money is genuinely associated with a jurisdiction, that does not make it personally “received” or “spent” by the elected official. MPLADS explicitly describes the MP’s role as recommendation, with the District Authority responsible for sanction, execution and completion. [3]
+
+3. Research findings and design implications
+Finding
+Evidence
+Product implication
+MPLADS already exposes fund/work/GIS concepts
+Official MPLADS dashboard includes released funds, expenditure, works recommended/completed, sector, district/block/village, work status, start/completion dates and maps. [2]
+Do not merely copy it. Normalize its data and connect it to representatives, jurisdictions and other funding streams.
+Indian local-government hierarchy is machine-addressable
+LGD assigns unique codes to local governments and covers states, districts, villages, panchayats, ULBs and wards. [5]
+Use LGD codes as the backbone of the geography/entity model and preserve historical mappings.
+Rural development data is comparatively structured
+eGramSwaraj covers planning, progress, accounting, assets, geo-tagging and PFMS integration. [4]
+Gram Panchayat should be a major early data domain rather than a later “manual” layer.
+Urban data has national financial standardization but uneven coverage
+City Finance reports financial statements for thousands of ULBs, with explicit data-availability variation and service-level benchmarks. [6]
+Show coverage scores; never imply missing data means zero spending or poor performance.
+MLA schemes are state-specific
+Examples: Delhi has formal MLALAD guidelines; Assam states an annual MLA LAD allocation; Maharashtra describes a ₹5 crore annual MLA local-area allocation. [13]-[15]
+Build a configurable state-scheme registry instead of one national MLA fund schema.
+Government programme spending is often not attributable to a politician
+Finance Commission transfers, municipal revenue, central/state schemes and departmental budgets flow through institutions. [16]
+Use role-based attribution: recommends, sanctions, implements, owns portfolio, oversees, jurisdiction-only.
+Audit evidence matters
+CAG publishes local-body audits including performance/compliance findings. [17]-[19]
+Link audit observations to institutions/projects and create a “verified concern” layer.
+Procurement evidence is public for many central procurements
+CPPP publishes tenders, corrigenda and award-of-contract details. [20]
+Attach tender/award/contract evidence to project records where IDs can be reconciled.
+Grievance data is measurable
+CPGRAMS exposes department/state receipts, disposal percentages and aging buckets. [21]
+Add responsiveness/administrative-service indicators at the department/state level, but do not incorrectly attribute all grievances to politicians.
+Citizen-facing election data is public
+ECI Candidate Affidavit Portal publishes candidate profiles and affidavits; election results are published by constituency. [22]-[24]
+Use ECI as the canonical representative identity/election source where applicable.
+
+4. Product scope
+4.1 Launch hierarchy
+Stage
+Entity
+Primary accountability view
+Expected data readiness
+MVP-1
+Lok Sabha MP
+MPLADS + representative profile + parliamentary activity + constituency map
+High
+MVP-1
+MLA
+State-specific LAD + assembly activity + constituency map
+Medium / state-dependent
+MVP-2
+Mayor / Municipal Corporation / Municipality
+ULB finances + projects + service indicators + ward map
+Medium
+MVP-2
+Gram Pradhan / Gram Panchayat
+eGramSwaraj + local grants + scheme works + assets + GPDP
+Medium-high
+Phase 3
+Block / Intermediate Panchayat
+Institutional finances, works, schemes and members
+Medium
+Phase 3
+District Panchayat / Zila Parishad
+Institutional finances, works, grants, assets and members
+Medium
+Phase 3
+State/Union Minister
+Portfolio budget, scheme performance, legislative/public actions
+Medium; attribution constrained
+Phase 4
+Department / agency / implementing authority
+Institution-level spending, contracts, outcomes and audits
+High for selected departments
+
+4.2 In scope for core product
+Representative and office/tenure records.
+Administrative geography and constituency boundaries.
+Funding ledger: entitlement -> allocation -> release -> sanction -> expenditure -> balance.
+Project/work ledger with status, costs, responsible institutions, vendors where public, location and evidence.
+Maps and jurisdiction overlays.
+Compare mode, including like-for-like normalization.
+Government-source citations and source snapshots.
+Data completeness and freshness indicators.
+Citizen-submitted evidence and correction workflow with moderation.
+Audit/red-flag evidence linking.
+4.3 Out of scope for MVP
+Publishing allegations as facts.
+A single opaque “best politician” score.
+Inferring corruption from high/low spending alone.
+Private or scraped personal data not already lawfully public.
+Political ad targeting, persuasion or voter micro-targeting.
+Real-time beneficiary personal information.
+Automatically attributing every departmental scheme outcome to the minister in office.
+5. Core data model: the accountability graph
+The platform should be designed as a graph over normalized entities. The primary unit is not a “politician card”; it is a traceable relationship between an actor, a place, a fund, a work and evidence.
+Entity
+Examples
+Key fields
+Person
+MP, MLA, mayor, pradhan, minister
+canonical_id, name variants, office, party, tenure start/end, source
+Office / institution
+Lok Sabha, state assembly, ULB, Gram Panchayat, ministry
+type, parent, jurisdiction, statutory role
+Geography
+state, district, block, village, ward, constituency
+LGD code, geometry, effective dates, aliases
+Fund source
+MPLADS, MLALAD, FC grant, state scheme, municipal own revenue
+scheme, funding authority, fiscal year, fund type
+Allocation / release
+annual entitlement, tranche, grant transfer
+amount, date, from/to, status, source document
+Work / project
+road, drain, school, water tank, community hall
+work id, title, sector, location, cost, dates, status
+Transaction / expenditure
+voucher/payment/financial progress aggregate
+amount, date/period, category, payer/payee where public
+Contract
+tender, award, work order
+tender id, bidder/vendor, award value, date, source
+Asset
+built asset / facility
+asset id, coordinates, condition/status, photos
+Evidence
+government doc, image, video, audit, citizen report
+type, URL/file, timestamp, provenance, confidence
+Performance event
+question, debate, meeting, promise, policy action
+date, institution, topic, participation
+Audit / finding
+CAG / AuditOnline / social audit concern
+severity, period, finding, amount, status, source
+
+5.1 Attribution taxonomy
+Attribution label
+Meaning
+Example
+Direct recommendation
+Official is recorded as recommending a specific work
+MP recommends a work under MPLADS
+Direct decision / sanction
+Official/institution has formal sanction authority
+Where the source explicitly records it
+Implementing authority
+Body responsible for physical execution
+District authority / engineering department
+Portfolio responsibility
+Minister/department is responsible for programme/portfolio
+Ministry administers a national scheme
+Oversight / monitoring
+Official has monitoring or political oversight role
+Local-body elected body / ministerial oversight
+Jurisdiction exposure
+Money/work occurs in the official’s geography
+Road in an MLA constituency
+Claimed attribution
+Official/party/public claim says credit is due
+Must be labelled as a claim, not fact
+Citizen attribution
+User-submitted statement
+Requires provenance and moderation
+
+Every project tile and funding figure should carry a small attribution badge. The strongest badge is direct government-recorded attribution; the weakest is jurisdiction-only association.
+6. Funding model and financial UX
+6.1 The five-account view
+For every funding stream, show five distinct numbers where available: Entitled/Eligible, Allocated, Released, Sanctioned/Committed, and Expended. Do not replace these with one “funds received” number.
+Metric
+Definition
+UI label
+Entitlement / ceiling
+What the actor or institution is eligible to recommend/receive under rules
+Entitled
+Allocation
+Budget or grant amount assigned
+Allocated
+Release
+Actual transfer/release by the funding authority
+Released
+Sanction / commitment
+Amount approved/committed for a specific work or purpose
+Sanctioned
+Expenditure
+Amount recorded as spent/financial progress
+Spent
+Balance
+Derived from the relevant accounting basis
+Balance / Unspent
+Physical progress
+Work progress independent of spend
+Physical progress
+
+6.2 Funding ledger UI
+Headline: “₹X released • ₹Y sanctioned • ₹Z spent” with reporting dates.
+Expandable annual bars by financial year.
+Scheme/source breakdown.
+Work-status breakdown: proposed, sanctioned, tendered, underway, completed, cancelled, stalled, unknown.
+Map of funded works.
+“Why this is attributed to this official” explanation.
+Source link and source snapshot.
+6.3 The “money trail” view
+A citizen should be able to click from a ₹5 crore allocation to the works that consume it, then into each work’s sanction order, contractor/tender where public, physical location, progress, photos and audit evidence. This is the platform’s signature interaction.
+7. Geography and representative discovery
+The user’s proposed location drill-down should be implemented as a dynamic hierarchy rather than a hard-coded “state -> city -> village” path. India has parallel rural and urban structures and overlapping electoral constituencies.
+Path
+Example
+Rural administrative
+State -> District -> Block -> Gram Panchayat -> Village -> Ward/Hamlet where available
+Urban administrative
+State -> District -> Urban Local Body -> Ward -> Locality
+Parliamentary overlay
+State -> Parliamentary Constituency -> Assembly Constituency -> administrative units
+Assembly overlay
+State -> Assembly Constituency -> administrative units
+Crosswalk view
+Any place -> overlapping MP / MLA / ULB / Panchayat / ward representations
+
+LGD should be the identity spine because it supplies unique codes and supports relationships among villages, panchayats, ULBs and wards. Constituency boundaries must be modelled as time-versioned overlays because electoral and administrative boundaries are not the same thing. [5]
+7.1 Homepage
+Search: “Find my area, representative or project”.
+Use current location only with explicit user permission; otherwise ask for a place.
+Auto-suggest state/district/ULB/village and representative names.
+Show current data-coverage percentage before making strong performance claims.
+Featured: “Where your public money is going” rather than political leader rankings.
+8. Representative profile page
+Section
+Required content
+Identity
+Name, photo where public, office, party, tenure, constituency, elected date, current/historical status
+Role
+What the official can and cannot control; attribution explanation
+Public money
+Relevant direct funds + portfolio/jurisdiction exposure clearly separated
+Projects
+List + map, by status, sector, year, amount
+Legislative record
+Attendance, questions, debates, committee participation where data exists
+Public commitments
+Manifesto/officially documented promises in later phase
+Audits
+Relevant audit findings linked to the institution/work
+Procurement
+Public tender/award records linked to projects where match confidence is high
+Evidence
+Government photos/docs + citizen-submitted evidence
+Compare
+Add representative or institution to compare set
+Data quality
+Coverage, last refreshed, missing periods, source count
+
+8.1 “What did they actually do?” panel
+This panel should answer five questions in sequence: What was the official empowered to do? What did they formally initiate/recommend? What happened financially? What happened physically? What independent evidence exists?
+9. Project / work detail page
+Project detail should feel like a public audit trail, not a gallery card.
+Field
+Behavior
+Project title
+Original government title + plain-language title
+Location
+Map, coordinates if public, village/ward, administrative chain, constituency overlays
+Cost
+Recommended / sanctioned / revised / expenditure amounts where available
+Dates
+Recommendation, sanction, tender, start, milestone, completion
+Status
+Normalized state + original source status
+Funding
+Every known funding source, including converged funding
+Responsibility
+Recommendation / sanction / execution / ownership / monitoring roles
+Contract
+Tender, award, contractor, award amount and links where public
+Evidence timeline
+Official uploads, geo-tagged photos, inspection/audit docs, citizen reports
+Verification
+Source freshness, evidence confidence, contradictory evidence alerts
+Share/export
+Clean public URL, citation pack, CSV/PDF export later
+
+10. Compare mode
+Comparison is central, but naïve rankings are dangerous. The compare engine should normalize for role, population, geography, tenure length, fund eligibility and data completeness.
+10.1 Compare dimensions
+Financial execution: released-to-sanctioned / sanctioned-to-spent, with exact source definitions.
+Project delivery: completion rate, median completion time, stalled-project rate.
+Evidence coverage: % of records with primary-source documents / geotagged images.
+Sector mix: roads, water, sanitation, education, health, public buildings, etc.
+Legislative engagement: attendance/questions/debates/committees where comparable.
+Audit outcomes: findings and recovery/follow-up status; not “guilt scores.”
+Service outcomes for ULBs: published service-level benchmarks where available.
+Data completeness: coverage by year/source to stop incomplete data from looking like clean performance.
+10.2 Comparability rules
+Only compare entities with the same role and a similar measurement definition.
+Use a tenure-normalized period when comparing representatives who served different lengths.
+Use per-capita/per-household/per-km metrics only when the denominator is reliable.
+Allow users to turn normalization factors on/off.
+Every chart has a methodology drawer.
+11. Role-specific product logic
+11.1 MP
+Primary: MPLADS + parliamentary activity + constituency-level development context. MPLADS already exposes released funds, expenditure, recommended/completed works, district/block/village filters and GIS elements. The platform should enrich that data with representative identity, tenure, parliamentary record, project evidence and cross-scheme context. [2]
+Important: MPLADS should be shown as a direct recommendation relationship—not as an MP personally spending public money. Official MPLADS guidance is explicit on this division of responsibility. [3]
+11.2 MLA
+The MLA layer should start with a State Scheme Registry. Each state gets a configuration describing the name of the scheme, annual entitlement, eligible work types, approval chain, implementing authority, portal URL/API/downloads, fiscal-year conventions and data fields. Delhi, Assam and Maharashtra demonstrate that the program design and stated allocation can differ by state. [13]-[15]
+11.3 Mayor / ULB
+Do not create a fake “mayor fund” metric. Instead show the municipal institution’s finances, grants, own revenue, expenditure, capital expenditure, service-level indicators, major projects, contracts and ward distribution. Add the mayor’s institutional role separately. City Finance already provides standardized city-level financial indicators and service-level benchmarking, with varying data coverage. [6], [7]
+11.4 Gram Pradhan / Gram Panchayat
+Use the Gram Panchayat as the financial institution and the pradhan as the elected representative. eGramSwaraj supports profile/election information, planning, progress reporting, accounting, assets, geo-tagging and PFMS-linked financial management. This creates an unusually strong foundation for a village development ledger. [4]
+11.5 Minister
+For ministers, use a portfolio model, not a personal-fund model. Show: portfolio tenure, ministry/department budget, expenditure, flagship scheme physical/financial performance, major policy decisions, parliamentary answers/questions, audits, procurement and outcomes. Clearly label all figures as “portfolio/department exposure”.
+12. Data source architecture
+Domain
+Primary source class
+Ingestion priority
+Use
+Representative identity/elections
+ECI; Parliament/Assembly sites
+P0
+Canonical people + election outcomes
+Administrative geography
+LGD
+P0
+Stable IDs + hierarchy + crosswalks
+MP development funds
+MPLADS
+P0
+Funds + works + GIS
+Rural local govt
+eGramSwaraj / MoPR
+P0
+GP profiles, plans, progress, accounts, assets
+Urban local govt
+City Finance + ULB portals
+P0
+Financial statements, grants, service indicators
+State MLA funds
+State govt portals / budget / district portals
+P0 by state
+MLA LAD scheme data
+Central schemes
+Scheme MIS + OGD + ministry dashboards
+P1
+Place-level outputs and funds
+Procurement
+CPPP + State e-procurement + GeM where accessible
+P1
+Tender/award/contract evidence
+Audit
+CAG + AuditOnline + social audit records
+P1
+Assurance and red flags
+Grievance
+CPGRAMS + state grievance systems
+P2
+Responsiveness context
+Legislative records
+Sansad / Assembly / PRS where needed
+P1
+Participation/activity
+Citizen evidence
+First-party platform uploads
+P1
+Verification and corrections
+News / social
+Only as secondary corroboration
+P3
+Context, never primary financial proof
+
+The OGD Platform is particularly important as a discovery layer: it exposes datasets from central and state contributors, APIs/web services, and groups such as Local Government Directory, Jal Jeevan Mission, PMGSY and Swachh Bharat Mission. It also states that published content is owned by the contributing agencies and licensed under the Government Open Data License - India. [25]
+13. Data ingestion and engineering requirements
+13.1 Source connectors
+API connector when a stable public API exists.
+Structured CSV/XLS/XLSX/PDF ingestion when no API exists.
+HTML table extraction only where permitted and stable.
+Document archive ingestion with page-level source references.
+Manual source onboarding for high-value state portals during MVP, with an explicit maintenance owner.
+13.2 Immutable source snapshots
+Every imported record should be linked to a source snapshot: URL, retrieval timestamp, source title, reporting period, checksum/hash where feasible, and extraction version. This is essential because government portals change and some pages do not retain historical presentation.
+13.3 Canonical IDs and entity resolution
+LGD code for local governments and village mappings where applicable.
+ECI election/candidate identifier where available.
+Parliament/Assembly member identifier where available.
+MPLADS work identifiers; state-scheme work IDs.
+Tender IDs / award IDs / contract IDs.
+Internal persistent IDs with alias tables for renamed places, constituencies, people and institutions.
+13.4 Historical versioning
+Store effective_from and effective_to for every representative-place relationship and every geography crosswalk. A user should be able to ask, “Who represented this place and what spending was recorded during 2022-24?” without retroactively applying today’s boundaries or officeholder.
+14. Data quality, confidence and completeness
+The product should make uncertainty visible rather than hide it.
+Indicator
+Definition
+Example UI
+Source confidence
+Authority and stability of the source
+Government primary source / secondary source / citizen evidence
+Record completeness
+Required fields populated
+82% complete
+Time freshness
+Days since last successful refresh
+Updated 3 days ago
+Coverage
+Share of relevant entities/years with data
+Data available for 71% of ULBs
+Attribution confidence
+Strength of official-recorded relationship
+Direct / role-based / jurisdiction-only
+Evidence confidence
+Strength of proof for work status
+High / medium / low / conflicting
+
+City Finance itself publishes data-availability variation across ULBs; the product should adopt the same discipline. A missing record must display as “unknown / unavailable”, never as zero. [6]
+15. Performance framework
+The MVP should avoid a single leader score. Instead, ship a “performance panel” consisting of transparent indicators. A composite score can be explored later only after sufficient coverage, role-specific methodologies and public audit of the formula.
+15.1 Core dimensions
+Dimension
+MP / MLA
+Mayor / ULB
+Pradhan / GP
+Minister
+Financial execution
+Yes, scheme-specific
+Yes, institution-level
+Yes, institution-level
+Portfolio-level
+Delivery
+Works completed / time
+Projects + service benchmarks
+Works/assets + physical progress
+Scheme outcomes
+Representation
+Attendance, questions, debates
+Assembly activity
+Meeting/plan participation where available
+Parliament + policy record
+Evidence
+Source-backed works
+Audited accounts + projects
+Geo-tagged assets + audits
+Scheme/audit docs
+Responsiveness
+Public contact / grievance context
+Grievance/service context
+Citizen issue tracking where lawful
+Department grievance context
+Audit
+Relevant findings
+ULB findings
+PRI/social audit findings
+Departmental/CAG findings
+
+15.2 Red flags
+Red flags are not accusations. They identify records worth checking.
+Large sanctioned amount with prolonged no-progress/stalled status.
+Repeated revisions or cancellations.
+Spend recorded but physical progress missing/unknown.
+Conflicting completion status across official sources.
+Audit finding unresolved beyond the recorded follow-up period.
+Procurement award value substantially differs from project-reported cost without explanation.
+Sudden project concentration in one contractor/vendor where public procurement data supports the comparison.
+Very high apparent performance paired with very low underlying data coverage.
+16. Citizen participation and evidence
+16.1 Citizen report
+Citizens should be able to submit a project observation without editing the government record. Example: “Government source says completed; photo taken 28 Aug 2026 appears incomplete.”
+Location capture (optional), timestamp, photos/video, description.
+Structured issue types: not found, incomplete, poor quality, duplicate, wrong location, different work, unsafe/damaged.
+Evidence is displayed as a separate layer and cannot overwrite official data.
+Moderation queue for spam, defamation, personal data and political campaigning.
+Users can request a correction to source-derived data.
+16.2 Community verification
+Introduce a later “Verify this work” flow where multiple independent local observations can increase evidence confidence. Never turn likes/comments into factual truth; they are signals, not verification.
+17. Audit and assurance layer
+The platform should build a “Source Lens” into every important number. CAG’s local-body audit ecosystem demonstrates that financial and implementation weaknesses can exist even when a project is technically recorded as completed. [17]-[19]
+CAG report link -> finding -> affected institution -> affected year -> affected theme.
+AuditOnline / social-audit record where publicly available.
+Recovery/action-taken status where source data permits.
+No legal conclusion; use the source’s terminology and quote minimally.
+18. Procurement intelligence
+CPPP publishes tender enquiries, corrigenda and award-of-contract details for central government organizations. [20] State procurement systems vary. The product should therefore treat procurement as an evidence enrichment layer and use confidence-based entity matching.
+Match project title/location/work department to tender title and tender ID.
+Show tender value, award value, vendor and dates where public.
+Track corrigenda and re-tender events.
+Later: vendor concentration and repeat-award patterns, with strong methodological disclaimers.
+19. Parliamentary and legislative accountability
+Parliament Digital Library exposes questions and debates with member/ministry metadata, enabling structured participation analysis. [26] PRS provides state-legislature research and performance summaries where official assembly data is hard to normalize. [27]
+Questions asked / answered by ministry and topic.
+Debate participation and topic clusters.
+Committee participation where data is available.
+Attendance with denominator and session period.
+Bills/private members’ business where comparable.
+For MLAs, clearly distinguish official assembly data from third-party reconstructed data. The product should show a source badge on every metric.
+20. Search, filters and query engine
+Filter family
+Examples
+Time
+Today, FY 2025-26, 2019-24, tenure-to-date, custom
+Place
+State, district, block, ULB, ward, GP, village, constituency
+Official
+MP, MLA, mayor, pradhan, minister, department
+Funds
+Source, scheme, allocated, released, sanctioned, spent, balance
+Work
+Sector, status, value band, start/completion, implementing body
+Evidence
+Government doc, geo-tagged photo, audit, citizen verification
+Quality
+Coverage, freshness, confidence, missing fields
+Compare
+Population band, ULB type, constituency size, tenure length
+
+20.1 Natural-language search
+Later, users should be able to ask: “Show all water projects in my village since 2022, who recommended them, how much was sanctioned and whether they are complete.” The response must be generated from structured query results and source links, not free-form hallucination.
+21. Key user journeys
+Journey A — Citizen checks their area
+Search village/city.
+System resolves LGD geography and overlapping MP/MLA/ULB/GP entities.
+Show place dashboard: institutions, major funds, projects, recent changes, coverage.
+Citizen opens a project and sees money trail + evidence.
+Citizen saves/follows the place.
+Journey B — Journalist compares two representatives
+Pick two MPs/MLAs.
+System applies role, tenure and geography normalization.
+Compare financial execution, delivery, legislative activity and evidence coverage.
+Export citation pack with source links and reporting dates.
+Journey C — Citizen challenges a completion claim
+Open project marked complete.
+See official completion evidence.
+Submit timestamped photo and location.
+Moderation validates basic integrity.
+Project evidence status becomes “conflicting evidence”, without altering government status.
+Journey D — Researcher traces a rupee
+Search funding scheme.
+Filter to state/district/representative.
+Open release -> sanctions -> works -> contracts -> assets -> audit.
+Download structured data / references.
+22. Information architecture and primary screens
+Screen
+Primary goal
+MVP
+Home / area search
+Enter from place or representative
+P0
+Area dashboard
+Understand all public money and work around a place
+P0
+Representative profile
+Understand role, record and attributed work
+P0
+Project detail
+Audit trail for one work
+P0
+Funding explorer
+Filter money across schemes and geographies
+P0
+Compare
+Compare like-for-like entities
+P0
+Map explorer
+Discover projects spatially
+P0
+Sources / methodology
+Explain every metric
+P0
+Citizen evidence
+Submit / review observations
+P1
+Audit explorer
+Search findings
+P1
+Procurement explorer
+Tender/award links
+P1
+Minister portfolio
+Portfolio performance
+P2
+
+23. UX principles
+Plain-language headline; exact number underneath.
+Never hide source and date behind a generic “data” label.
+Use color for status, not political party identity.
+Avoid red/green “good/bad” without context.
+Every ranking has a “Why this rank?” drawer.
+Every claim has “Source / period / definition / last update”.
+Mobile-first because local discovery and evidence capture will often happen on phones.
+Hindi-first and multilingual architecture; start with English + Hindi, add state languages based on adoption.
+24. Architecture (proposed)
+A source-first data platform is preferable to a traditional CRUD application. Suggested high-level components:
+Source registry + scheduler: tracks portals, APIs, refresh cadence, owners and parser versions.
+Raw evidence lake: immutable documents, CSVs, HTML snapshots and images.
+Normalization layer: canonical schemas for people, places, institutions, funds and works.
+Entity resolution service: name aliases, IDs, geography crosswalks, historical changes.
+Graph / relationship store: official <-> role <-> geography <-> fund <-> work <-> institution <-> evidence.
+Analytical store: precomputed metrics, comparisons and time-series.
+Search index: fast name/place/project discovery.
+API layer: web/mobile clients plus public read-only API later.
+Moderation and provenance service: citizen evidence, reports and corrections.
+24.1 Suggested stack
+A practical implementation could use PostgreSQL + PostGIS for canonical data/geography, object storage for source documents/images, a search index such as OpenSearch/Elastic or PostgreSQL search initially, a graph representation implemented in PostgreSQL relational edges first and a graph database later only if needed, Python/TypeScript ingestion workers, and a Next.js web frontend. The exact stack is intentionally not locked by this PRD.
+25. Core data schema (MVP)
+Table
+Must-have columns
+persons
+id, canonical_name, aliases, source_ids, current_status
+roles
+id, person_id, role_type, institution_id, constituency_id, start_date, end_date, source
+geographies
+id, lgd_code, type, parent_id, name, geometry, effective_from, effective_to
+institutions
+id, type, name, parent_id, geography_id, source_ids
+fund_sources
+id, scheme_id, type, authority, ruleset_id
+fund_events
+id, fund_source_id, institution/person relation, event_type, amount, date, FY, source_id
+projects
+id, source_work_id, title, sector, location_geo_id, lat, lon, status, dates, source_id
+project_finance
+project_id, recommended, sanctioned, revised, expended, as_of, source_id
+responsibilities
+project_id, actor/institution_id, role_type, confidence, source_id
+contracts
+id, tender_id, project_id, vendor_id, tender_value, award_value, dates, source_id
+evidence
+id, target_type, target_id, source_type, URL/file, captured_at, confidence, moderation_status
+audit_findings
+id, institution/project_id, report_id, finding_type, severity, amount, period, status
+refresh_runs
+source_id, run_at, result, records_added, changed, failures, parser_version
+
+26. API requirements
+GET /areas/{lgd_code}
+GET /representatives/{id}
+GET /projects?area=&official=&scheme=&status=&from=&to=
+GET /funds?entity=&scheme=&from=&to=
+GET /compare?entities=
+GET /sources/{id}
+POST /citizen-evidence
+Public API can be rate-limited and released later, but the internal API contract should be designed from day one so the web app does not become the data model.
+27. Legal, safety, and trust requirements
+Use public-source material with source attribution and preserve original context.
+Do not republish private contact details or sensitive personal information unnecessarily.
+Criminal-case data must be described as declared/alleged/under trial unless a final judicial status is established by the source; never write “criminal” as an unqualified label.
+Citizen submissions need defamation, harassment, doxxing and political-manipulation controls.
+Provide correction/appeal mechanisms for officials and citizens.
+Store a source version so corrections are auditable.
+Avoid using the platform to target protected groups or voters with political persuasion.
+Use “public accountability record” language rather than accusatory “expose” language.
+28. Data governance and editorial policy
+Policy
+Rule
+Primary source priority
+Government primary source > statutory record > reputable secondary research > citizen evidence > social/news
+Conflicting records
+Show both; choose latest authoritative record for default display and explain conflict
+Missing values
+Unknown, not zero
+Attribution
+Only as strong as source evidence
+Scoring
+Transparent, role-specific, coverage-adjusted
+User content
+Separate from official data
+Corrections
+Versioned, reversible, reviewed
+Historical data
+Do not overwrite; preserve period snapshots
+
+29. Analytics and product KPIs
+North-star metric
+Verified public-accountability journeys completed: a user searches an area/official, opens a project or fund trail, reaches a primary source, and either saves, compares or submits a useful evidence/correction action.
+Product metrics
+Search-to-profile success rate.
+Profile-to-project click-through rate.
+Project-to-primary-source click-through rate.
+Percentage of records with complete source provenance.
+Percentage of active geographies with fresh data.
+Citizen-evidence acceptance rate / moderation turnaround.
+Correction requests resolved.
+Compare sessions completed.
+Return users by geography.
+30. MVP definition and phased rollout
+MVP-1: MP + selected MLA pilot
+Capability
+Requirement
+Representative lookup
+ECI-backed current + historical profile
+Geography
+LGD hierarchy + constituency overlay for pilot states
+MP funds
+MPLADS work/fund data normalized
+MLA funds
+2-4 pilot states with materially different scheme designs
+Projects
+Map + status + financial ledger + evidence
+Compare
+Two representatives, role-aware
+Legislative
+MP participation where official data exists
+Sources
+Source drawer + timestamps + coverage
+Citizen
+Correction request only in first release; full evidence in P1
+
+MVP-2: Mayor + Gram Panchayat
+City Finance integration and ULB profiles.
+eGramSwaraj integration and GP profiles.
+Ward/village project maps.
+Service-level and asset indicators where data exists.
+Mayor/pradhan role-specific responsibility views.
+Phase 3: National expansion
+All MLA schemes available through state-source registry.
+Block, district panchayat and district-level institutions.
+Central schemes and procurement enrichment.
+Audit explorer and citizen verification.
+Phase 4: Minister / department intelligence
+Portfolio budgets and outcomes.
+Scheme-level financial/physical monitoring.
+Cross-ministry comparisons only where definitions support comparison.
+31. Release acceptance criteria
+For a supported MP, at least 95% of displayed financial figures must have a traceable primary source and reporting period.
+Every project must show the source attribution relationship that connects it to the representative or institution.
+No UI string may label jurisdiction-wide expenditure as “spent by politician” unless the source says so.
+Users can reach a state -> district -> rural/urban local body path without knowing government terminology.
+Every comparison view displays data coverage and the measurement definition.
+Historical tenure and boundary changes do not silently rewrite old records.
+Official data and citizen-submitted evidence are visually separated.
+Broken or stale sources are surfaced to internal operations and reflected in freshness indicators.
+At least one end-to-end trace works: fund release -> work -> location -> source document -> project status.
+32. Operational backlog / internal admin
+Source health dashboard: uptime, parser failures, freshness, record deltas.
+Manual data-review queue for ambiguous entity matches.
+State-scheme configuration editor.
+Representative tenure correction tool.
+Project duplicate/merge tool.
+Source snapshot browser.
+Citizen moderation queue.
+Public correction history.
+33. Key risks and mitigations
+Risk
+Severity
+Mitigation
+False attribution
+Critical
+Role-based responsibility graph + badges + explanatory copy
+Fragmented MLA data
+High
+State Scheme Registry + staged state onboarding
+Incomplete urban data
+High
+Coverage indicator; no zero inference
+Changing government portals
+High
+Immutable snapshots + source health monitoring
+Boundary changes
+High
+Time-versioned geographies + historical crosswalks
+Political bias accusations
+High
+Source-first editorial policy + transparent methodology + no opaque score
+Citizen abuse
+High
+Moderation, rate limits, reporting, evidence-only contribution model
+Overbuilt MVP
+Medium
+Launch with MP/selected MLA and one money-trail interaction
+Low repeat usage
+Medium
+Area watchlists, new-work alerts, annual budget refreshes, compare
+
+34. High-value features to add beyond the original concept
+“Where the money went” map: all major publicly identifiable works around a user’s area, not only politician-linked works.
+“Who is responsible?” resolver: project -> recommender -> sanctioning body -> implementing department -> elected institution.
+Budget vs outcome view: planned vs actual expenditure plus published physical outputs.
+Work timeline: every change in status or amount, not a static completion badge.
+Data coverage meter: tell users when the evidence base is weak.
+Budget calendar: remind users when central/state/municipal budgets and annual plans update.
+Ward/village issue map: cluster reported public-service problems without turning the product into an unverified complaint board.
+Project similarity: compare similar projects by cost, sector and geography to spot unusual patterns for human review.
+Claim checker: later, parse a public speech/press release and map a claim to government records, clearly separating “claim” from “fact”.
+Public-source citation pack: one click export with source URLs, reporting dates and methodology for journalists.
+Open data API: downstream civic-tech ecosystem can build on normalized records.
+Area watch: notify when a new project, sanction, tender, audit or completion record appears for a chosen area.
+35. What the dashboard should feel like
+The home experience should not resemble a political leaderboard. It should feel like a public “control room” for a place. A strong home screen can show:
+“Your area” at the top with state/district/ULB/GP and overlapping constituencies.
+Public money cards: released / sanctioned / spent for clearly defined funding streams.
+Project progress strip: active / completed / stalled / unknown.
+Map with real works, not generic political markers.
+“What changed recently” timeline.
+“Evidence quality” indicator.
+Representative cards with role-specific metrics—not one score.
+Quick compare.
+The visual language should communicate public records, infrastructure and transparency rather than partisan politics: neutral status colors, restrained use of party colors, and strong source/methodology affordances.
+36. Recommended first prototype
+The highest-value prototype is not a national dashboard. It is one complete, high-trust journey that works exceptionally well for a single MP constituency and one adjacent MLA area. Prototype the following:
+Search a village/city.
+Resolve LGD geography + MP + MLA + ULB/GP.
+Show the public money streams relevant to that place.
+Open a project.
+Show who recommended it, who sanctioned it, who executed it, what was sanctioned/spent, where it is, whether it is complete, and the source.
+Compare the representative with one peer using normalized metrics.
+Show data coverage and source freshness.
+Let the citizen submit a correction/evidence note.
+Once this money-trail interaction is trustworthy, the rest of the platform becomes a scaling problem rather than a conceptual problem.
+37. Research source register
+The following primary/secondary public sources were reviewed for this PRD. URLs are included so the product team can independently validate assumptions before implementation. Access/research baseline: 31 August 2026.
+#
+Source
+URL
+Why it matters
+1
+Govvy: US Politicians, Apple App Store
+https://apps.apple.com/us/app/govvy-us-politicians/id6760485985
+Representative discovery, voting/legislation, campaign information and contact features.
+2
+MPLADS official dashboard
+https://mplads.gov.in/MPLADS/Dashboard/DashBoard.aspx
+Fund release, expenditure, works, filters, project dates, maps and GIS.
+3
+MPLADS official scheme/guidelines page
+https://mplads.gov.in/mplads/Default.aspx
+MP recommendation role and District Authority execution responsibility.
+4
+NIC: eGramSwaraj
+https://www.nic.gov.in/project/egramswaraj/
+Panchayat profile, planning, progress, accounting, assets, geo-tagging, PFMS integration.
+5
+Ministry of Panchayati Raj: LGD
+https://panchayat.gov.in/en/lgd/
+Unique local-government codes and rural/urban hierarchy.
+6
+MoHUA/City Finance national dashboard
+https://prod.cityfinance.in/municipal-data/national
+ULB financial data, data availability, revenue, expenditure and grants.
+7
+City Finance
+https://www.cityfinance.in/
+City financial performance, service-level benchmarks and comparison.
+8
+ECI Candidate Affidavit Portal
+https://www.eci.gov.in/affidavitt-portal
+Candidate profiles and affidavits in public domain.
+9
+ECI Know Your Candidate
+https://www.eci.gov.in/know-your-candidate
+Candidate search and declared-case information.
+10
+ECI election results
+https://results.eci.gov.in/
+Constituency-level election results and official result data.
+11
+Parliament Digital Library
+https://eparlib.sansad.in/handle/123456789/8
+Questions/debates with member/ministry metadata.
+12
+PRS India state legislature vital stats
+https://prsindia.org/legislatures/state/vital-stats
+State legislative functioning research and comparative context.
+13
+Delhi MLA LAD guidelines
+https://udd.delhi.gov.in/ud/mlalad-fund-guideline
+State-specific MLALAD rules and SOPs.
+14
+Assam MLA LAD scheme
+https://dimahasao.assam.gov.in/index.php/scheme-page/mla-lad
+Example of state-specific MLA LAD allocation and process.
+15
+Maharashtra Divisional Commissioner / Planning Branch
+https://divcomnashik.maharashtra.gov.in/en/planning-branch/
+Example of state-specific MLA/MLC local-area allocation and monitoring.
+16
+Sixteenth Finance Commission
+https://fincomindia.nic.in/commission-reports-sixteenth
+Local-body data and finance-transfer context.
+17
+CAG local-body audit reports
+https://cag.gov.in/en/audit-report?title=Panchayat
+Panchayat/local-body audit evidence.
+18
+CAG Assam local-body audit 2026
+https://cag.gov.in/en/audit-report/details/125177
+Example of current PRI/ULB findings and financial accountability.
+19
+CAG local-body audit archive
+https://cag.gov.in/en/audit-report?sector%5B0%5D=24
+Local-government performance/compliance audit library.
+20
+Central Public Procurement Portal / ePublishing
+https://eprocure.gov.in/epublish/app?page=Home&service=page
+Tender, corrigendum and award-of-contract publication.
+21
+CPGRAMS dashboard
+https://pgportal.gov.in/darpgdashboard
+Department/state grievance receipts, disposals and aging.
+22
+ECI candidate nomination
+https://www.eci.gov.in/candidate-nomination
+ENCORE candidate profile and affidavit pipeline.
+23
+ECI assembly elections
+https://www.eci.gov.in/assembly-elections-new
+Election cycles and assembly election source index.
+24
+ECI election management
+https://www.eci.gov.in/election-management
+Results, Form 20 and election management source hub.
+25
+Open Government Data Platform India
+https://data.gov.in/
+National public-data catalog, APIs and datasets.
+26
+Parliament Digital Library: debates/questions
+https://eparlib.sansad.in/handle/123456789/8
+Question/debate metadata and participation browsing.
+27
+PRS India
+https://prsindia.org/
+State/national legislative research and performance analysis.
+28
+MGNREGA official
+https://nrega.nic.in/
+Social audits, public records and work/fund transparency principles.
+29
+MGNREGA social-audit expenditure
+https://mnregaweb4.nic.in/NregaArch/SocialAudit/exp_info.aspx
+Work-level wage/material expenditure and social-audit comparison.
+
+38. Final product recommendation
+Build Jan Nigrani as an “India Public Accountability Graph”, not as a politician rating app. The strongest product loop is: place -> representatives/institutions -> funding -> project -> responsibility -> evidence -> comparison. The app can later become a full government-performance layer, but credibility must be earned through precise attribution and source provenance first.
+The most defensible product language is: “See what public money was allocated, where it went, what work was recorded, who had responsibility, and what evidence exists.” That promise is both useful to citizens and compatible with the way India’s government systems actually work.
