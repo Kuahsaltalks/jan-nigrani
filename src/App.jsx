@@ -9,10 +9,12 @@ import CleanProjectModal from './components/CleanProjectModal.jsx';
 import CleanRepModal from './components/CleanRepModal.jsx';
 import CleanFooter from './components/CleanFooter.jsx';
 
+import ProminentLeadersSection from './components/ProminentLeadersSection.jsx';
+
 export default function App() {
   const [activeTab, setActiveTab] = useState('area'); // 'area', 'projects', 'compare', 'methodology'
-  const [selectedAreaId, setSelectedAreaId] = useState('geo-chhoti-ramdi');
-  const [selectedRepId, setSelectedRepId] = useState('rep-ajay-bhatt');
+  const [selectedAreaId, setSelectedAreaId] = useState('geo-varanasi');
+  const [selectedRepId, setSelectedRepId] = useState('rep-modi');
   const [selectedRepModalId, setSelectedRepModalId] = useState(null);
   const [selectedProjectId, setSelectedProjectId] = useState(null);
   const [lang, setLang] = useState('en'); // 'en' or 'hi'
@@ -20,7 +22,7 @@ export default function App() {
   const handleSelectArea = (areaId) => {
     setSelectedAreaId(areaId);
     setActiveTab('area');
-    window.scrollTo({ top: 400, behavior: 'smooth' });
+    window.scrollTo({ top: 750, behavior: 'smooth' });
   };
 
   const handleSelectRep = (repId) => {
@@ -41,7 +43,7 @@ export default function App() {
         setLang={setLang}
       />
 
-      {/* 2. Hero Search Bar */}
+      {/* 2. Hero Search Bar with Pan-India Constituency RAG Search */}
       <CleanHeroSearch
         onSelectArea={handleSelectArea}
         onSelectRep={handleSelectRep}
@@ -53,12 +55,21 @@ export default function App() {
       {/* 3. Main Views */}
       <main className="flex-1 pb-16">
         {activeTab === 'area' && (
-          <CleanAreaView
-            areaId={selectedAreaId}
-            onSelectRep={handleSelectRep}
-            onSelectProject={handleSelectProject}
-            lang={lang}
-          />
+          <div className="space-y-8">
+            {/* Prominent National Leaders (BJP & Congress) Grid */}
+            <ProminentLeadersSection
+              onSelectRep={handleSelectRep}
+              lang={lang}
+            />
+
+            {/* Selected Area Public Accountability Dashboard */}
+            <CleanAreaView
+              areaId={selectedAreaId}
+              onSelectRep={handleSelectRep}
+              onSelectProject={handleSelectProject}
+              lang={lang}
+            />
+          </div>
         )}
 
         {activeTab === 'projects' && (

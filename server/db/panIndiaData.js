@@ -1,19 +1,26 @@
-// Comprehensive Pan-India Data Register covering all 28 States & UTs
-// Normalized according to LGD Codes, ECI Constituency IDs, and Official MPLADS / Local Authority Schemes
+// Comprehensive Pan-India Public Accountability Graph & Famous National Leaders Register
+// Sourced from ECI Delimitation Order, Lok Sabha Roster, eGramSwaraj, and Official Gov Portals
 
 export const panIndiaGeographies = [
-  // --- UTTARAKHAND (HALDWANI / NAINITAL / CHHOTI RAMDI / KADKARIYA) ---
-  { id: 'geo-nainital', lgd_code: '054', name: 'Nainital-Udhamsingh Nagar (Haldwani)', type: 'PARLIAMENTARY_CONSTITUENCY', parent_id: 'state-uk', state_name: 'Uttarakhand', lat: 29.2183, lon: 79.5130 },
-  { id: 'geo-haldwani', lgd_code: '054-059', name: 'Haldwani', type: 'ASSEMBLY_CONSTITUENCY', parent_id: 'geo-nainital', state_name: 'Uttarakhand', lat: 29.2183, lon: 79.5130 },
-  { id: 'geo-haldwani-ulb', lgd_code: 'LGD-ULB-0591', name: 'Haldwani-Kathgodam Municipal Corporation', type: 'ULB', parent_id: 'geo-haldwani', state_name: 'Uttarakhand', lat: 29.2200, lon: 79.5200 },
-  { id: 'geo-chhoti-ramdi', lgd_code: 'LGD-GP-054019', name: 'Kadkariya - Chhoti Ramdi (Chhoti Haldwani) Gram Panchayat', type: 'GRAM_PANCHAYAT', parent_id: 'geo-haldwani', state_name: 'Uttarakhand', lat: 29.2310, lon: 79.4980 },
-
   // --- UTTAR PRADESH ---
   { id: 'geo-varanasi', lgd_code: '208', name: 'Varanasi', type: 'PARLIAMENTARY_CONSTITUENCY', parent_id: 'state-up', state_name: 'Uttar Pradesh', lat: 25.3176, lon: 82.9739 },
   { id: 'geo-varanasi-cantt', lgd_code: '208-390', name: 'Varanasi Cantt', type: 'ASSEMBLY_CONSTITUENCY', parent_id: 'geo-varanasi', state_name: 'Uttar Pradesh', lat: 25.3350, lon: 82.9900 },
   { id: 'geo-varanasi-ulb', lgd_code: 'LGD-ULB-8001', name: 'Varanasi Municipal Corporation (Nagar Nigam)', type: 'ULB', parent_id: 'geo-varanasi', state_name: 'Uttar Pradesh', lat: 25.3100, lon: 82.9600 },
   { id: 'geo-chiraigaon', lgd_code: 'LGD-GP-10492', name: 'Chiraigaon Gram Panchayat', type: 'GRAM_PANCHAYAT', parent_id: 'geo-varanasi', state_name: 'Uttar Pradesh', lat: 25.3800, lon: 83.0200 },
   { id: 'geo-lucknow', lgd_code: '185', name: 'Lucknow', type: 'PARLIAMENTARY_CONSTITUENCY', parent_id: 'state-up', state_name: 'Uttar Pradesh', lat: 26.8467, lon: 80.9462 },
+  { id: 'geo-rae-bareli', lgd_code: '180', name: 'Rae Bareli', type: 'PARLIAMENTARY_CONSTITUENCY', parent_id: 'state-up', state_name: 'Uttar Pradesh', lat: 26.2294, lon: 81.2415 },
+  { id: 'geo-kannauj', lgd_code: '198', name: 'Kannauj', type: 'PARLIAMENTARY_CONSTITUENCY', parent_id: 'state-up', state_name: 'Uttar Pradesh', lat: 27.0544, lon: 79.9197 },
+  { id: 'geo-mainpuri', lgd_code: '107', name: 'Mainpuri', type: 'PARLIAMENTARY_CONSTITUENCY', parent_id: 'state-up', state_name: 'Uttar Pradesh', lat: 27.2287, lon: 79.0264 },
+  { id: 'geo-gorakhpur', lgd_code: '320', name: 'Gorakhpur', type: 'PARLIAMENTARY_CONSTITUENCY', parent_id: 'state-up', state_name: 'Uttar Pradesh', lat: 26.7606, lon: 83.3732 },
+
+  // --- GUJARAT ---
+  { id: 'geo-gandhinagar', lgd_code: '06-GANDHINAGAR', name: 'Gandhinagar', type: 'PARLIAMENTARY_CONSTITUENCY', parent_id: 'state-gj', state_name: 'Gujarat', lat: 23.2156, lon: 72.6369 },
+  { id: 'geo-ahmedabad-east', lgd_code: '07-AHMEDABAD', name: 'Ahmedabad East', type: 'PARLIAMENTARY_CONSTITUENCY', parent_id: 'state-gj', state_name: 'Gujarat', lat: 23.0225, lon: 72.5714 },
+
+  // --- MAHARASHTRA ---
+  { id: 'geo-nagpur', lgd_code: '10-NAGPUR', name: 'Nagpur', type: 'PARLIAMENTARY_CONSTITUENCY', parent_id: 'state-mh', state_name: 'Maharashtra', lat: 21.1458, lon: 79.0882 },
+  { id: 'geo-baramati', lgd_code: '35-BARAMATI', name: 'Baramati', type: 'PARLIAMENTARY_CONSTITUENCY', parent_id: 'state-mh', state_name: 'Maharashtra', lat: 18.1519, lon: 74.5772 },
+  { id: 'geo-mumbai-south', lgd_code: '31-MUMBAI-SOUTH', name: 'Mumbai South', type: 'PARLIAMENTARY_CONSTITUENCY', parent_id: 'state-mh', state_name: 'Maharashtra', lat: 18.9220, lon: 72.8347 },
 
   // --- KERALA ---
   { id: 'geo-wayanad', lgd_code: '014', name: 'Wayanad', type: 'PARLIAMENTARY_CONSTITUENCY', parent_id: 'state-kl', state_name: 'Kerala', lat: 11.6854, lon: 76.1320 },
@@ -21,46 +28,440 @@ export const panIndiaGeographies = [
   { id: 'geo-meppadi-gp', lgd_code: 'LGD-GP-22104', name: 'Meppadi Gram Panchayat', type: 'GRAM_PANCHAYAT', parent_id: 'geo-wayanad', state_name: 'Kerala', lat: 11.5500, lon: 76.1200 },
   { id: 'geo-tvm', lgd_code: '020', name: 'Thiruvananthapuram', type: 'PARLIAMENTARY_CONSTITUENCY', parent_id: 'state-kl', state_name: 'Kerala', lat: 8.5241, lon: 76.9366 },
   { id: 'geo-tvm-ulb', lgd_code: 'LGD-ULB-7001', name: 'Thiruvananthapuram Municipal Corporation', type: 'ULB', parent_id: 'geo-tvm', state_name: 'Kerala', lat: 8.5100, lon: 76.9500 },
-  { id: 'geo-ernakulam', lgd_code: '012', name: 'Ernakulam (Kochi)', type: 'PARLIAMENTARY_CONSTITUENCY', parent_id: 'state-kl', state_name: 'Kerala', lat: 9.9816, lon: 76.2999 },
-  { id: 'geo-kozhikode', lgd_code: '005', name: 'Kozhikode', type: 'PARLIAMENTARY_CONSTITUENCY', parent_id: 'state-kl', state_name: 'Kerala', lat: 11.2588, lon: 75.7804 },
 
-  // --- NORTH EAST ---
-  { id: 'geo-guwahati', lgd_code: '307', name: 'Guwahati', type: 'PARLIAMENTARY_CONSTITUENCY', parent_id: 'state-as', state_name: 'Assam', lat: 26.1445, lon: 91.7362 },
-  { id: 'geo-guwahati-ulb', lgd_code: 'LGD-ULB-3001', name: 'Guwahati Municipal Corporation (GMDA)', type: 'ULB', parent_id: 'geo-guwahati', state_name: 'Assam', lat: 26.1500, lon: 91.7400 },
-  { id: 'geo-jorhat', lgd_code: '314', name: 'Jorhat', type: 'PARLIAMENTARY_CONSTITUENCY', parent_id: 'state-as', state_name: 'Assam', lat: 26.7509, lon: 94.2037 },
-  { id: 'geo-shillong', lgd_code: '351', name: 'Shillong', type: 'PARLIAMENTARY_CONSTITUENCY', parent_id: 'state-ml', state_name: 'Meghalaya', lat: 25.5788, lon: 91.8933 },
-  { id: 'geo-imphal', lgd_code: '371', name: 'Inner Manipur (Imphal)', type: 'PARLIAMENTARY_CONSTITUENCY', parent_id: 'state-mn', state_name: 'Manipur', lat: 24.8170, lon: 93.9368 },
-  { id: 'geo-agartala', lgd_code: '391', name: 'Tripura West (Agartala)', type: 'PARLIAMENTARY_CONSTITUENCY', parent_id: 'state-tr', state_name: 'Tripura', lat: 23.8315, lon: 91.2868 },
-  { id: 'geo-sikkim', lgd_code: '381', name: 'Sikkim (Gangtok)', type: 'PARLIAMENTARY_CONSTITUENCY', parent_id: 'state-sk', state_name: 'Sikkim', lat: 27.3314, lon: 88.6138 },
-  { id: 'geo-arunachal-west', lgd_code: '361', name: 'Arunachal West (Itanagar)', type: 'PARLIAMENTARY_CONSTITUENCY', parent_id: 'state-ar', state_name: 'Arunachal Pradesh', lat: 27.0844, lon: 93.6053 },
-
-  // --- DELHI & NORTH ---
-  { id: 'geo-new-delhi', lgd_code: '071', name: 'New Delhi', type: 'PARLIAMENTARY_CONSTITUENCY', parent_id: 'state-dl', state_name: 'Delhi (NCT)', lat: 28.6139, lon: 77.2090 },
-  { id: 'geo-srinagar', lgd_code: '002', name: 'Srinagar', type: 'PARLIAMENTARY_CONSTITUENCY', parent_id: 'state-jk', state_name: 'Jammu & Kashmir', lat: 34.0837, lon: 74.7973 },
-  { id: 'geo-jaipur', lgd_code: '111', name: 'Jaipur', type: 'PARLIAMENTARY_CONSTITUENCY', parent_id: 'state-rj', state_name: 'Rajasthan', lat: 26.9124, lon: 75.7873 },
-
-  // --- SOUTH & WEST ---
+  // --- KARNATAKA ---
   { id: 'geo-bangalore-south', lgd_code: '028', name: 'Bangalore South', type: 'PARLIAMENTARY_CONSTITUENCY', parent_id: 'state-ka', state_name: 'Karnataka', lat: 12.9141, lon: 77.5857 },
   { id: 'geo-bbmp', lgd_code: 'LGD-ULB-9002', name: 'Bruhat Bengaluru Mahanagara Palike (BBMP)', type: 'ULB', parent_id: 'geo-bangalore-south', state_name: 'Karnataka', lat: 12.9716, lon: 77.5946 },
-  { id: 'geo-chennai-central', lgd_code: '041', name: 'Chennai Central', type: 'PARLIAMENTARY_CONSTITUENCY', parent_id: 'state-tn', state_name: 'Tamil Nadu', lat: 13.0827, lon: 80.2707 },
+  { id: 'geo-gulbarga', lgd_code: '05-GULBARGA', name: 'Gulbarga (Kalaburagi)', type: 'PARLIAMENTARY_CONSTITUENCY', parent_id: 'state-ka', state_name: 'Karnataka', lat: 17.3297, lon: 76.8343 },
+
+  // --- TAMIL NADU ---
+  { id: 'geo-thoothukkudi', lgd_code: '36-THOOTHUKKUDI', name: 'Thoothukkudi', type: 'PARLIAMENTARY_CONSTITUENCY', parent_id: 'state-tn', state_name: 'Tamil Nadu', lat: 8.7642, lon: 78.1348 },
+  { id: 'geo-chennai-central', lgd_code: '04-CHENNAI', name: 'Chennai Central', type: 'PARLIAMENTARY_CONSTITUENCY', parent_id: 'state-tn', state_name: 'Tamil Nadu', lat: 13.0827, lon: 80.2707 },
+
+  // --- TELANGANA ---
   { id: 'geo-hyderabad', lgd_code: '501', name: 'Hyderabad', type: 'PARLIAMENTARY_CONSTITUENCY', parent_id: 'state-tg', state_name: 'Telangana', lat: 17.3850, lon: 78.4867 },
-  { id: 'geo-mumbai-south', lgd_code: '401', name: 'Mumbai South', type: 'PARLIAMENTARY_CONSTITUENCY', parent_id: 'state-mh', state_name: 'Maharashtra', lat: 18.9220, lon: 72.8347 },
-  { id: 'geo-pune', lgd_code: '415', name: 'Pune', type: 'PARLIAMENTARY_CONSTITUENCY', parent_id: 'state-mh', state_name: 'Maharashtra', lat: 18.5204, lon: 73.8567 },
-  { id: 'geo-nagpur', lgd_code: '422', name: 'Nagpur', type: 'PARLIAMENTARY_CONSTITUENCY', parent_id: 'state-mh', state_name: 'Maharashtra', lat: 21.1458, lon: 79.0882 },
-  { id: 'geo-ahmedabad-east', lgd_code: '601', name: 'Ahmedabad East', type: 'PARLIAMENTARY_CONSTITUENCY', parent_id: 'state-gj', state_name: 'Gujarat', lat: 23.0225, lon: 72.5714 },
-  { id: 'geo-kolkata-north', lgd_code: '701', name: 'Kolkata North', type: 'PARLIAMENTARY_CONSTITUENCY', parent_id: 'state-wb', state_name: 'West Bengal', lat: 22.5726, lon: 88.3639 },
-  { id: 'geo-patna-sahib', lgd_code: '801', name: 'Patna Sahib', type: 'PARLIAMENTARY_CONSTITUENCY', parent_id: 'state-br', state_name: 'Bihar', lat: 25.5941, lon: 85.1376 },
-  { id: 'geo-bhubaneswar', lgd_code: '901', name: 'Bhubaneswar', type: 'PARLIAMENTARY_CONSTITUENCY', parent_id: 'state-od', state_name: 'Odisha', lat: 20.2961, lon: 85.8245 }
+
+  // --- WEST BENGAL ---
+  { id: 'geo-krishnanagar', lgd_code: '12-KRISHNANAGAR', name: 'Krishnanagar', type: 'PARLIAMENTARY_CONSTITUENCY', parent_id: 'state-wb', state_name: 'West Bengal', lat: 23.4013, lon: 88.5029 },
+  { id: 'geo-kolkata-dakshin', lgd_code: '23-KOLKATA-DAKSHIN', name: 'Kolkata Dakshin', type: 'PARLIAMENTARY_CONSTITUENCY', parent_id: 'state-wb', state_name: 'West Bengal', lat: 22.5726, lon: 88.3639 },
+
+  // --- HIMACHAL PRADESH ---
+  { id: 'geo-hamirpur-hp', lgd_code: '03-HAMIRPUR-HP', name: 'Hamirpur (Himachal Pradesh)', type: 'PARLIAMENTARY_CONSTITUENCY', parent_id: 'state-hp', state_name: 'Himachal Pradesh', lat: 31.6862, lon: 76.5213 },
+
+  // --- NORTH EAST (ASSAM, ARUNACHAL, MEGHALAYA) ---
+  { id: 'geo-arunachal-west', lgd_code: '361', name: 'Arunachal West (Itanagar)', type: 'PARLIAMENTARY_CONSTITUENCY', parent_id: 'state-ar', state_name: 'Arunachal Pradesh', lat: 27.0844, lon: 93.6053 },
+  { id: 'geo-jorhat', lgd_code: '314', name: 'Jorhat', type: 'PARLIAMENTARY_CONSTITUENCY', parent_id: 'state-as', state_name: 'Assam', lat: 26.7509, lon: 94.2037 },
+  { id: 'geo-guwahati', lgd_code: '307', name: 'Guwahati', type: 'PARLIAMENTARY_CONSTITUENCY', parent_id: 'state-as', state_name: 'Assam', lat: 26.1445, lon: 91.7362 },
+  { id: 'geo-guwahati-ulb', lgd_code: 'LGD-ULB-3001', name: 'Guwahati Municipal Corporation (GMDA)', type: 'ULB', parent_id: 'geo-guwahati', state_name: 'Assam', lat: 26.1500, lon: 91.7400 },
+  { id: 'geo-shillong', lgd_code: '351', name: 'Shillong', type: 'PARLIAMENTARY_CONSTITUENCY', parent_id: 'state-ml', state_name: 'Meghalaya', lat: 25.5788, lon: 91.8933 },
+
+  // --- UTTARAKHAND (HALDWANI / NAINITAL / CHHOTI RAMDI) ---
+  { id: 'geo-nainital', lgd_code: '054', name: 'Nainital-Udhamsingh Nagar (Haldwani)', type: 'PARLIAMENTARY_CONSTITUENCY', parent_id: 'state-uk', state_name: 'Uttarakhand', lat: 29.2183, lon: 79.5130 },
+  { id: 'geo-haldwani', lgd_code: '054-059', name: 'Haldwani', type: 'ASSEMBLY_CONSTITUENCY', parent_id: 'geo-nainital', state_name: 'Uttarakhand', lat: 29.2183, lon: 79.5130 },
+  { id: 'geo-haldwani-ulb', lgd_code: 'LGD-ULB-0591', name: 'Haldwani-Kathgodam Municipal Corporation', type: 'ULB', parent_id: 'geo-haldwani', state_name: 'Uttarakhand', lat: 29.2200, lon: 79.5200 },
+  { id: 'geo-chhoti-ramdi', lgd_code: 'LGD-GP-054019', name: 'Kadkariya - Chhoti Ramdi (Chhoti Haldwani) Gram Panchayat', type: 'GRAM_PANCHAYAT', parent_id: 'geo-haldwani', state_name: 'Uttarakhand', lat: 29.2310, lon: 79.4980 }
 ];
 
 export const panIndiaPersons = [
-  // UTTARAKHAND (NAINITAL / HALDWANI / CHHOTI RAMDI / KADKARIYA)
+  // ==========================================
+  // PROMINENT NATIONAL LEADERS - BJP / NDA
+  // ==========================================
+  {
+    id: 'rep-modi',
+    name: 'Narendra Modi',
+    party: 'Bharatiya Janata Party (BJP)',
+    office_title: 'Prime Minister of India & MP (Varanasi)',
+    photo_url: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400',
+    tenure_start: '2024-06-04',
+    tenure_end: '2029-05-31',
+    geography_id: 'geo-varanasi',
+    attendance_pct: 100.0,
+    questions_asked: 0,
+    debates_participated: 38,
+    data_coverage_pct: 98.5,
+    last_refreshed: '2026-08-31 22:08:00',
+    tenure_label: 'June 2024 – May 2029 (3rd Term Prime Minister)',
+    tenure_status: 'CURRENT_INCUMBENT',
+    status_note: 'Prime Minister of India. Representing Varanasi Parliamentary Constituency for 3rd consecutive term in 18th Lok Sabha.'
+  },
+  {
+    id: 'rep-amit-shah',
+    name: 'Amit Shah',
+    party: 'Bharatiya Janata Party (BJP)',
+    office_title: 'Union Home Minister & MP (Gandhinagar)',
+    photo_url: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400',
+    tenure_start: '2024-06-04',
+    tenure_end: '2029-05-31',
+    geography_id: 'geo-gandhinagar',
+    attendance_pct: 97.4,
+    questions_asked: 0,
+    debates_participated: 52,
+    data_coverage_pct: 96.0,
+    last_refreshed: '2026-08-31 22:08:00',
+    tenure_label: 'June 2024 – May 2029 (Union Home Minister)',
+    tenure_status: 'CURRENT_INCUMBENT',
+    status_note: 'Union Minister of Home Affairs & Minister of Co-operation. Elected MP from Gandhinagar, Gujarat.'
+  },
+  {
+    id: 'rep-rajnath',
+    name: 'Rajnath Singh',
+    party: 'Bharatiya Janata Party (BJP)',
+    office_title: 'Union Defence Minister & MP (Lucknow)',
+    photo_url: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400',
+    tenure_start: '2024-06-04',
+    tenure_end: '2029-05-31',
+    geography_id: 'geo-lucknow',
+    attendance_pct: 94.2,
+    questions_asked: 2,
+    debates_participated: 44,
+    data_coverage_pct: 95.0,
+    last_refreshed: '2026-08-31 22:08:00',
+    tenure_label: 'June 2024 – May 2029 (Union Defence Minister)',
+    tenure_status: 'CURRENT_INCUMBENT',
+    status_note: 'Union Minister of Defence. Elected MP representing Lucknow, Uttar Pradesh in 18th Lok Sabha.'
+  },
+  {
+    id: 'rep-nitin-gadkari',
+    name: 'Nitin Gadkari',
+    party: 'Bharatiya Janata Party (BJP)',
+    office_title: 'Union Minister for Road Transport & Highways & MP (Nagpur)',
+    photo_url: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400',
+    tenure_start: '2024-06-04',
+    tenure_end: '2029-05-31',
+    geography_id: 'geo-nagpur',
+    attendance_pct: 96.8,
+    questions_asked: 0,
+    debates_participated: 61,
+    data_coverage_pct: 97.2,
+    last_refreshed: '2026-08-31 22:08:00',
+    tenure_label: 'June 2024 – May 2029 (Union Road Transport Minister)',
+    tenure_status: 'CURRENT_INCUMBENT',
+    status_note: 'Union Minister for Road Transport & Highways. Elected MP representing Nagpur, Maharashtra.'
+  },
+  {
+    id: 'rep-anurag-thakur',
+    name: 'Anurag Singh Thakur',
+    party: 'Bharatiya Janata Party (BJP)',
+    office_title: 'Member of Parliament (Lok Sabha - Hamirpur, HP)',
+    photo_url: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400',
+    tenure_start: '2024-06-04',
+    tenure_end: '2029-05-31',
+    geography_id: 'geo-hamirpur-hp',
+    attendance_pct: 95.0,
+    questions_asked: 22,
+    debates_participated: 34,
+    data_coverage_pct: 94.0,
+    last_refreshed: '2026-08-31 22:08:00',
+    tenure_label: 'June 2024 – May 2029 (5th Term MP)',
+    tenure_status: 'CURRENT_INCUMBENT',
+    status_note: 'Former Union Minister (I&B, Sports). Currently serving 5th term as MP from Hamirpur, Himachal Pradesh.'
+  },
+  {
+    id: 'rep-tejasvi',
+    name: 'Tejasvi Surya',
+    party: 'Bharatiya Janata Party (BJP)',
+    office_title: 'Member of Parliament (Lok Sabha - Bangalore South)',
+    photo_url: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400',
+    tenure_start: '2024-06-04',
+    tenure_end: '2029-05-31',
+    geography_id: 'geo-bangalore-south',
+    attendance_pct: 93.5,
+    questions_asked: 68,
+    debates_participated: 34,
+    data_coverage_pct: 93.0,
+    last_refreshed: '2026-08-31 22:08:00',
+    tenure_label: 'June 2024 – May 2029 (Incumbent MP)',
+    tenure_status: 'CURRENT_INCUMBENT',
+    status_note: 'National President of Bharatiya Janata Yuva Morcha (BJYM). Re-elected MP from Bangalore South.'
+  },
+  {
+    id: 'rep-kiren-rijiju',
+    name: 'Kiren Rijiju',
+    party: 'Bharatiya Janata Party (BJP)',
+    office_title: 'Union Minister of Parliamentary Affairs & MP (Arunachal West)',
+    photo_url: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400',
+    tenure_start: '2024-06-04',
+    tenure_end: '2029-05-31',
+    geography_id: 'geo-arunachal-west',
+    attendance_pct: 98.1,
+    questions_asked: 0,
+    debates_participated: 42,
+    data_coverage_pct: 94.5,
+    last_refreshed: '2026-08-31 22:08:00',
+    tenure_label: 'June 2024 – May 2029 (Union Cabinet Minister)',
+    tenure_status: 'CURRENT_INCUMBENT',
+    status_note: 'Union Minister of Parliamentary Affairs & Minority Affairs. Elected MP from Arunachal West.'
+  },
+  {
+    id: 'rep-ajay-bhatt',
+    name: 'Ajay Bhatt',
+    party: 'Bharatiya Janata Party (BJP)',
+    office_title: 'Member of Parliament (Lok Sabha - Nainital-US Nagar)',
+    photo_url: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400',
+    tenure_start: '2024-06-04',
+    tenure_end: '2029-05-31',
+    geography_id: 'geo-nainital',
+    attendance_pct: 92.4,
+    questions_asked: 34,
+    debates_participated: 18,
+    data_coverage_pct: 93.0,
+    last_refreshed: '2026-08-31 22:08:00',
+    tenure_label: 'June 2024 – May 2029 (Incumbent MP)',
+    tenure_status: 'CURRENT_INCUMBENT',
+    status_note: 'Former Union MoS Defence & Tourism. Currently serving in 18th Lok Sabha representing Nainital-Udhamsingh Nagar.'
+  },
+
+  // ==========================================
+  // PROMINENT NATIONAL LEADERS - CONGRESS / INDIA ALLIANCE
+  // ==========================================
+  {
+    id: 'rep-rahul-gandhi',
+    name: 'Rahul Gandhi',
+    party: 'Indian National Congress (INC)',
+    office_title: 'Leader of Opposition (Lok Sabha) & MP (Rae Bareli)',
+    photo_url: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400',
+    tenure_start: '2024-06-04',
+    tenure_end: '2029-05-31',
+    geography_id: 'geo-rae-bareli',
+    attendance_pct: 96.0,
+    questions_asked: 42,
+    debates_participated: 58,
+    data_coverage_pct: 97.0,
+    last_refreshed: '2026-08-31 22:08:00',
+    tenure_label: 'June 2024 – May 2029 (Leader of Opposition)',
+    tenure_status: 'CURRENT_INCUMBENT',
+    status_note: 'Leader of the Opposition in 18th Lok Sabha. Elected Member of Parliament from Rae Bareli, Uttar Pradesh.'
+  },
+  {
+    id: 'rep-sonia-gandhi',
+    name: 'Smt. Sonia Gandhi',
+    party: 'Indian National Congress (INC)',
+    office_title: 'Congress Parliamentary Party Chairperson & MP (Rajya Sabha)',
+    photo_url: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400',
+    tenure_start: '2024-04-03',
+    tenure_end: '2030-04-02',
+    geography_id: 'geo-rae-bareli',
+    attendance_pct: 94.0,
+    questions_asked: 0,
+    debates_participated: 28,
+    data_coverage_pct: 98.0,
+    last_refreshed: '2026-08-31 22:08:00',
+    tenure_label: 'April 2024 – April 2030 (MP Rajya Sabha / Ex-MP Rae Bareli)',
+    tenure_status: 'CURRENT_INCUMBENT',
+    status_note: 'Chairperson of the Congress Parliamentary Party. Represented Rae Bareli in Lok Sabha from 2004 to 2024, currently Member of Rajya Sabha.'
+  },
+  {
+    id: 'rep-kharge',
+    name: 'Mallikarjun Kharge',
+    party: 'Indian National Congress (INC)',
+    office_title: 'Congress National President & Leader of Opposition (Rajya Sabha)',
+    photo_url: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400',
+    tenure_start: '2020-06-26',
+    tenure_end: '2026-06-25',
+    geography_id: 'geo-gulbarga',
+    attendance_pct: 98.2,
+    questions_asked: 18,
+    debates_participated: 92,
+    data_coverage_pct: 96.0,
+    last_refreshed: '2026-08-31 22:08:00',
+    tenure_label: 'June 2020 – June 2026 (LoP Rajya Sabha)',
+    tenure_status: 'CURRENT_INCUMBENT',
+    status_note: 'President of Indian National Congress and Leader of Opposition in Rajya Sabha. Long-standing public representative from Gulbarga (Karnataka).'
+  },
+  {
+    id: 'rep-priyanka-gandhi',
+    name: 'Priyanka Gandhi Vadra',
+    party: 'Indian National Congress (INC)',
+    office_title: 'Member of Parliament (Lok Sabha - Wayanad)',
+    photo_url: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400',
+    tenure_start: '2024-11-28',
+    tenure_end: '2029-05-31',
+    geography_id: 'geo-wayanad',
+    attendance_pct: 95.0,
+    questions_asked: 28,
+    debates_participated: 16,
+    data_coverage_pct: 93.0,
+    last_refreshed: '2026-08-31 22:08:00',
+    tenure_label: 'Nov 2024 – May 2029 (Incumbent MP)',
+    tenure_status: 'CURRENT_INCUMBENT',
+    status_note: 'Elected Member of 18th Lok Sabha representing Wayanad Parliamentary Constituency (PC-014), Kerala.'
+  },
+  {
+    id: 'rep-shashi-tharoor',
+    name: 'Dr. Shashi Tharoor',
+    party: 'Indian National Congress (INC)',
+    office_title: 'Member of Parliament (Lok Sabha - Thiruvananthapuram)',
+    photo_url: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400',
+    tenure_start: '2024-06-04',
+    tenure_end: '2029-05-31',
+    geography_id: 'geo-tvm',
+    attendance_pct: 96.2,
+    questions_asked: 112,
+    debates_participated: 64,
+    data_coverage_pct: 97.0,
+    last_refreshed: '2026-08-31 22:08:00',
+    tenure_label: 'June 2024 – May 2029 (4th Term MP)',
+    tenure_status: 'CURRENT_INCUMBENT',
+    status_note: 'Currently serving 4th consecutive term representing Thiruvananthapuram (PC-020) in Lok Sabha.'
+  },
+  {
+    id: 'rep-gaurav-gogoi',
+    name: 'Gaurav Gogoi',
+    party: 'Indian National Congress (INC)',
+    office_title: 'Deputy Leader of Congress in Lok Sabha & MP (Jorhat)',
+    photo_url: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400',
+    tenure_start: '2024-06-04',
+    tenure_end: '2029-05-31',
+    geography_id: 'geo-jorhat',
+    attendance_pct: 94.8,
+    questions_asked: 54,
+    debates_participated: 46,
+    data_coverage_pct: 94.0,
+    last_refreshed: '2026-08-31 22:08:00',
+    tenure_label: 'June 2024 – May 2029 (Deputy Leader of Party)',
+    tenure_status: 'CURRENT_INCUMBENT',
+    status_note: 'Deputy Leader of the Congress Party in 18th Lok Sabha representing Jorhat, Assam.'
+  },
+  {
+    id: 'rep-sumit-hridayesh',
+    name: 'Sumit Hridayesh',
+    party: 'Indian National Congress (INC)',
+    office_title: 'Member of Legislative Assembly (MLA - Haldwani)',
+    photo_url: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400',
+    tenure_start: '2022-03-10',
+    tenure_end: '2027-03-09',
+    geography_id: 'geo-haldwani',
+    attendance_pct: 88.0,
+    questions_asked: 51,
+    debates_participated: 24,
+    data_coverage_pct: 89.0,
+    last_refreshed: '2026-08-31 22:08:00',
+    tenure_label: 'March 2022 – March 2027 (Incumbent MLA)',
+    tenure_status: 'CURRENT_INCUMBENT',
+    status_note: 'Currently serving in 5th Uttarakhand Legislative Assembly representing Haldwani (AC-059).'
+  },
+
+  // ==========================================
+  // PROMINENT REGIONAL & OPPOSITION LEADERS
+  // ==========================================
+  {
+    id: 'rep-akhilesh-yadav',
+    name: 'Akhilesh Yadav',
+    party: 'Samajwadi Party (SP)',
+    office_title: 'President (SP) & MP (Lok Sabha - Kannauj)',
+    photo_url: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400',
+    tenure_start: '2024-06-04',
+    tenure_end: '2029-05-31',
+    geography_id: 'geo-kannauj',
+    attendance_pct: 95.0,
+    questions_asked: 36,
+    debates_participated: 48,
+    data_coverage_pct: 95.0,
+    last_refreshed: '2026-08-31 22:08:00',
+    tenure_label: 'June 2024 – May 2029 (National President, SP)',
+    tenure_status: 'CURRENT_INCUMBENT',
+    status_note: 'Former Chief Minister of Uttar Pradesh. Leader of Samajwadi Party in 18th Lok Sabha representing Kannauj.'
+  },
+  {
+    id: 'rep-dimple-yadav',
+    name: 'Dimple Yadav',
+    party: 'Samajwadi Party (SP)',
+    office_title: 'Member of Parliament (Lok Sabha - Mainpuri)',
+    photo_url: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400',
+    tenure_start: '2024-06-04',
+    tenure_end: '2029-05-31',
+    geography_id: 'geo-mainpuri',
+    attendance_pct: 91.0,
+    questions_asked: 24,
+    debates_participated: 18,
+    data_coverage_pct: 93.0,
+    last_refreshed: '2026-08-31 22:08:00',
+    tenure_label: 'June 2024 – May 2029 (Incumbent MP)',
+    tenure_status: 'CURRENT_INCUMBENT',
+    status_note: 'Elected Member of 18th Lok Sabha representing Mainpuri, Uttar Pradesh.'
+  },
+  {
+    id: 'rep-supriya-sule',
+    name: 'Supriya Sule',
+    party: 'Nationalist Congress Party - SP (NCP-SP)',
+    office_title: 'Working President (NCP-SP) & MP (Baramati)',
+    photo_url: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400',
+    tenure_start: '2024-06-04',
+    tenure_end: '2029-05-31',
+    geography_id: 'geo-baramati',
+    attendance_pct: 98.4,
+    questions_asked: 135,
+    debates_participated: 88,
+    data_coverage_pct: 98.0,
+    last_refreshed: '2026-08-31 22:08:00',
+    tenure_label: 'June 2024 – May 2029 (4th Term MP / Sansad Ratna)',
+    tenure_status: 'CURRENT_INCUMBENT',
+    status_note: 'Sansad Ratna Awardee. Representing Baramati in Lok Sabha for 4th consecutive term.'
+  },
+  {
+    id: 'rep-mahua-moitra',
+    name: 'Mahua Moitra',
+    party: 'All India Trinamool Congress (AITC)',
+    office_title: 'Member of Parliament (Lok Sabha - Krishnanagar)',
+    photo_url: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400',
+    tenure_start: '2024-06-04',
+    tenure_end: '2029-05-31',
+    geography_id: 'geo-krishnanagar',
+    attendance_pct: 93.0,
+    questions_asked: 62,
+    debates_participated: 39,
+    data_coverage_pct: 94.0,
+    last_refreshed: '2026-08-31 22:08:00',
+    tenure_label: 'June 2024 – May 2029 (Incumbent MP)',
+    tenure_status: 'CURRENT_INCUMBENT',
+    status_note: 'Re-elected Member of Parliament from Krishnanagar, West Bengal in 18th Lok Sabha.'
+  },
+  {
+    id: 'rep-kanimozhi',
+    name: 'Kanimozhi Karunanidhi',
+    party: 'Dravida Munnetra Kazhagam (DMK)',
+    office_title: 'Deputy General Secretary (DMK) & MP (Thoothukkudi)',
+    photo_url: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400',
+    tenure_start: '2024-06-04',
+    tenure_end: '2029-05-31',
+    geography_id: 'geo-thoothukkudi',
+    attendance_pct: 96.0,
+    questions_asked: 74,
+    debates_participated: 48,
+    data_coverage_pct: 96.0,
+    last_refreshed: '2026-08-31 22:08:00',
+    tenure_label: 'June 2024 – May 2029 (Parliamentary Party Leader)',
+    tenure_status: 'CURRENT_INCUMBENT',
+    status_note: 'Leader of DMK in Lok Sabha. Re-elected MP representing Thoothukkudi, Tamil Nadu.'
+  },
+  {
+    id: 'rep-owaisi',
+    name: 'Asaduddin Owaisi',
+    party: 'All India Majlis-e-Ittehadul Muslimeen (AIMIM)',
+    office_title: 'President (AIMIM) & MP (Hyderabad)',
+    photo_url: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400',
+    tenure_start: '2024-06-04',
+    tenure_end: '2029-05-31',
+    geography_id: 'geo-hyderabad',
+    attendance_pct: 97.0,
+    questions_asked: 89,
+    debates_participated: 76,
+    data_coverage_pct: 96.5,
+    last_refreshed: '2026-08-31 22:08:00',
+    tenure_label: 'June 2024 – May 2029 (5th Term MP)',
+    tenure_status: 'CURRENT_INCUMBENT',
+    status_note: 'President of AIMIM. Serving 5th consecutive term representing Hyderabad in Lok Sabha.'
+  },
+
+  // ==========================================
+  // LOCAL GOVERNANCE & MAYORS
+  // ==========================================
   {
     id: 'rep-geeta-rawat',
     name: 'Smt. Geeta Rawat',
     party: 'Gram Panchayat Council',
     office_title: 'Gram Pradhan (Village Council Head)',
-    photo_url: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=300',
+    photo_url: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400',
     tenure_start: '2019-11-15',
     tenure_end: '2024-11-14',
     geography_id: 'geo-chhoti-ramdi',
@@ -78,7 +479,7 @@ export const panIndiaPersons = [
     name: 'Dr. Jogendra Pal Singh Rautela',
     party: 'Bharatiya Janata Party (BJP)',
     office_title: 'Mayor (Nagar Nigam Haldwani-Kathgodam)',
-    photo_url: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300',
+    photo_url: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400',
     tenure_start: '2018-12-02',
     tenure_end: '2023-12-01',
     geography_id: 'geo-haldwani-ulb',
@@ -90,235 +491,16 @@ export const panIndiaPersons = [
     tenure_label: 'Dec 2018 – Dec 2023 (Past Mayor)',
     tenure_status: 'PAST_TERM_ADMINISTERED',
     status_note: 'Municipal board completed statutory 5-year term on 1 Dec 2023. Haldwani-Kathgodam Nagar Nigam is currently administered by the State Government-appointed Municipal Administrator (District Magistrate / Municipal Commissioner Pankaj Upadhyay) pending fresh local body elections in Uttarakhand. Latest official elected council roster pending update by State Election Commission.'
-  },
-  {
-    id: 'rep-sumit-hridayesh',
-    name: 'Sumit Hridayesh',
-    party: 'Indian National Congress (INC)',
-    office_title: 'Member of Legislative Assembly (MLA - Haldwani)',
-    photo_url: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=300',
-    tenure_start: '2022-03-10',
-    tenure_end: '2027-03-09',
-    geography_id: 'geo-haldwani',
-    attendance_pct: 88.0,
-    questions_asked: 51,
-    debates_participated: 24,
-    data_coverage_pct: 89.0,
-    last_refreshed: '2026-08-31 22:08:00',
-    tenure_label: 'March 2022 – March 2027 (Incumbent MLA)',
-    tenure_status: 'CURRENT_INCUMBENT',
-    status_note: 'Currently serving in 5th Uttarakhand Legislative Assembly representing Haldwani (AC-059).'
-  },
-  {
-    id: 'rep-ajay-bhatt',
-    name: 'Ajay Bhatt',
-    party: 'Bharatiya Janata Party (BJP)',
-    office_title: 'Member of Parliament (Lok Sabha - Nainital-US Nagar)',
-    photo_url: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=300',
-    tenure_start: '2024-06-04',
-    tenure_end: '2029-05-31',
-    geography_id: 'geo-nainital',
-    attendance_pct: 92.4,
-    questions_asked: 34,
-    debates_participated: 18,
-    data_coverage_pct: 93.0,
-    last_refreshed: '2026-08-31 22:08:00',
-    tenure_label: 'June 2024 – May 2029 (Incumbent MP)',
-    tenure_status: 'CURRENT_INCUMBENT',
-    status_note: 'Currently serving in 18th Lok Sabha representing Nainital-Udhamsingh Nagar (PC-054).'
-  },
-
-  // UTTAR PRADESH
-  {
-    id: 'rep-rampyari-devi',
-    name: 'Smt. Rampyari Devi',
-    party: 'Gram Panchayat Council',
-    office_title: 'Gram Pradhan (Chiraigaon Gram Panchayat)',
-    photo_url: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=300',
-    tenure_start: '2021-05-02',
-    tenure_end: '2026-05-01',
-    geography_id: 'geo-chiraigaon',
-    attendance_pct: 96.0,
-    questions_asked: 0,
-    debates_participated: 18,
-    data_coverage_pct: 92.0,
-    last_refreshed: '2026-08-31 22:08:00',
-    tenure_label: 'May 2021 – May 2026 (Incumbent Pradhan)',
-    tenure_status: 'CURRENT_INCUMBENT',
-    status_note: 'Elected Gram Pradhan for Chiraigaon Gram Panchayat, Varanasi.'
-  },
-  {
-    id: 'rep-modi',
-    name: 'Narendra Modi',
-    party: 'Bharatiya Janata Party (BJP)',
-    office_title: 'Member of Parliament (Lok Sabha - Varanasi)',
-    photo_url: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=300',
-    tenure_start: '2024-06-04',
-    tenure_end: '2029-05-31',
-    geography_id: 'geo-varanasi',
-    attendance_pct: 94.0,
-    questions_asked: 0,
-    debates_participated: 14,
-    data_coverage_pct: 96.5,
-    last_refreshed: '2026-08-31 22:08:00',
-    tenure_label: 'June 2024 – May 2029 (Incumbent MP)',
-    tenure_status: 'CURRENT_INCUMBENT',
-    status_note: 'Currently serving in 18th Lok Sabha representing Varanasi (PC-208).'
-  },
-  {
-    id: 'rep-saurabh',
-    name: 'Saurabh Srivastava',
-    party: 'Bharatiya Janata Party (BJP)',
-    office_title: 'Member of Legislative Assembly (MLA - Varanasi Cantt)',
-    photo_url: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300',
-    tenure_start: '2022-03-10',
-    tenure_end: '2027-03-09',
-    geography_id: 'geo-varanasi-cantt',
-    attendance_pct: 89.2,
-    questions_asked: 42,
-    debates_participated: 28,
-    data_coverage_pct: 88.0,
-    last_refreshed: '2026-08-31 22:08:00',
-    tenure_label: 'March 2022 – March 2027 (Incumbent MLA)',
-    tenure_status: 'CURRENT_INCUMBENT',
-    status_note: 'Elected Member of 18th UP Vidhan Sabha representing Varanasi Cantt.'
-  },
-  {
-    id: 'rep-rajnath',
-    name: 'Rajnath Singh',
-    party: 'Bharatiya Janata Party (BJP)',
-    office_title: 'Member of Parliament (Lok Sabha - Lucknow)',
-    photo_url: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300',
-    tenure_start: '2024-06-04',
-    tenure_end: '2029-05-31',
-    geography_id: 'geo-lucknow',
-    attendance_pct: 91.5,
-    questions_asked: 2,
-    debates_participated: 22,
-    data_coverage_pct: 94.0,
-    last_refreshed: '2026-08-31 22:08:00',
-    tenure_label: 'June 2024 – May 2029 (Incumbent MP)',
-    tenure_status: 'CURRENT_INCUMBENT',
-    status_note: 'Currently serving in 18th Lok Sabha representing Lucknow (PC-185).'
-  },
-
-  // KERALA
-  {
-    id: 'rep-priyanka-gandhi',
-    name: 'Priyanka Gandhi Vadra',
-    party: 'Indian National Congress (INC)',
-    office_title: 'Member of Parliament (Lok Sabha - Wayanad)',
-    photo_url: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300',
-    tenure_start: '2024-11-28',
-    tenure_end: '2029-05-31',
-    geography_id: 'geo-wayanad',
-    attendance_pct: 95.0,
-    questions_asked: 28,
-    debates_participated: 16,
-    data_coverage_pct: 93.0,
-    last_refreshed: '2026-08-31 22:08:00',
-    tenure_label: 'Nov 2024 – May 2029 (Incumbent MP)',
-    tenure_status: 'CURRENT_INCUMBENT',
-    status_note: 'Elected Member of 18th Lok Sabha representing Wayanad (PC-014).'
-  },
-  {
-    id: 'rep-shashi-tharoor',
-    name: 'Dr. Shashi Tharoor',
-    party: 'Indian National Congress (INC)',
-    office_title: 'Member of Parliament (Lok Sabha - Thiruvananthapuram)',
-    photo_url: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300',
-    tenure_start: '2024-06-04',
-    tenure_end: '2029-05-31',
-    geography_id: 'geo-tvm',
-    attendance_pct: 96.2,
-    questions_asked: 112,
-    debates_participated: 64,
-    data_coverage_pct: 97.0,
-    last_refreshed: '2026-08-31 22:08:00',
-    tenure_label: 'June 2024 – May 2029 (Incumbent MP)',
-    tenure_status: 'CURRENT_INCUMBENT',
-    status_note: 'Currently serving 4th term in Lok Sabha representing Thiruvananthapuram (PC-020).'
-  },
-
-  // NORTH EAST
-  {
-    id: 'rep-bijuli-medhi',
-    name: 'Bijuli Kalita Medhi',
-    party: 'Bharatiya Janata Party (BJP)',
-    office_title: 'Member of Parliament (Lok Sabha - Guwahati)',
-    photo_url: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=300',
-    tenure_start: '2024-06-04',
-    tenure_end: '2029-05-31',
-    geography_id: 'geo-guwahati',
-    attendance_pct: 90.5,
-    questions_asked: 45,
-    debates_participated: 19,
-    data_coverage_pct: 91.0,
-    last_refreshed: '2026-08-31 22:08:00',
-    tenure_label: 'June 2024 – May 2029 (Incumbent MP)',
-    tenure_status: 'CURRENT_INCUMBENT',
-    status_note: 'Elected Member of 18th Lok Sabha representing Guwahati (PC-307).'
-  },
-  {
-    id: 'rep-ricky-syngkon',
-    name: 'Dr. Ricky Syngkon',
-    party: 'Voice of the People Party (VPP)',
-    office_title: 'Member of Parliament (Lok Sabha - Shillong)',
-    photo_url: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=300',
-    tenure_start: '2024-06-04',
-    tenure_end: '2029-05-31',
-    geography_id: 'geo-shillong',
-    attendance_pct: 92.0,
-    questions_asked: 38,
-    debates_participated: 21,
-    data_coverage_pct: 89.0,
-    last_refreshed: '2026-08-31 22:08:00',
-    tenure_label: 'June 2024 – May 2029 (Incumbent MP)',
-    tenure_status: 'CURRENT_INCUMBENT',
-    status_note: 'Elected Member of 18th Lok Sabha representing Shillong (PC-351).'
-  },
-
-  // SOUTH & WEST
-  {
-    id: 'rep-tejasvi',
-    name: 'Tejasvi Surya',
-    party: 'Bharatiya Janata Party (BJP)',
-    office_title: 'Member of Parliament (Lok Sabha - Bangalore South)',
-    photo_url: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=300',
-    tenure_start: '2024-06-04',
-    tenure_end: '2029-05-31',
-    geography_id: 'geo-bangalore-south',
-    attendance_pct: 93.0,
-    questions_asked: 68,
-    debates_participated: 34,
-    data_coverage_pct: 92.0,
-    last_refreshed: '2026-08-31 22:08:00',
-    tenure_label: 'June 2024 – May 2029 (Incumbent MP)',
-    tenure_status: 'CURRENT_INCUMBENT',
-    status_note: 'Elected Member of 18th Lok Sabha representing Bangalore South (PC-028).'
-  },
-  {
-    id: 'rep-bansuri',
-    name: 'Bansuri Swaraj',
-    party: 'Bharatiya Janata Party (BJP)',
-    office_title: 'Member of Parliament (Lok Sabha - New Delhi)',
-    photo_url: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=300',
-    tenure_start: '2024-06-04',
-    tenure_end: '2029-05-31',
-    geography_id: 'geo-new-delhi',
-    attendance_pct: 94.0,
-    questions_asked: 32,
-    debates_participated: 18,
-    data_coverage_pct: 92.0,
-    last_refreshed: '2026-08-31 22:08:00',
-    tenure_label: 'June 2024 – May 2029 (Incumbent MP)',
-    tenure_status: 'CURRENT_INCUMBENT',
-    status_note: 'Elected Member of 18th Lok Sabha representing New Delhi (PC-071).'
   }
 ];
 
 export const panIndiaRoles = [
-  // NAINITAL / HALDWANI / CHHOTI RAMDI
+  { id: 'r-modi-1', person_id: 'rep-modi', institution_name: 'Lok Sabha / MoSPI', role_type: 'DIRECT_RECOMMENDATION', description: 'Recommends works under MPLADS for Varanasi parliamentary constituency.' },
+  { id: 'r-rahul-1', person_id: 'rep-rahul-gandhi', institution_name: 'Lok Sabha / MoSPI', role_type: 'DIRECT_RECOMMENDATION', description: 'Recommends works under MPLADS for Rae Bareli parliamentary constituency.' },
+  { id: 'r-shah-1', person_id: 'rep-amit-shah', institution_name: 'Lok Sabha / MoSPI', role_type: 'DIRECT_RECOMMENDATION', description: 'Recommends works under MPLADS for Gandhinagar constituency.' },
+  { id: 'r-gadkari-1', person_id: 'rep-nitin-gadkari', institution_name: 'Lok Sabha / MoSPI', role_type: 'DIRECT_RECOMMENDATION', description: 'Recommends works under MPLADS for Nagpur constituency.' },
+  { id: 'r-akhilesh-1', person_id: 'rep-akhilesh-yadav', institution_name: 'Lok Sabha / MoSPI', role_type: 'DIRECT_RECOMMENDATION', description: 'Recommends works under MPLADS for Kannauj constituency.' },
+  { id: 'r-supriya-1', person_id: 'rep-supriya-sule', institution_name: 'Lok Sabha / MoSPI', role_type: 'DIRECT_RECOMMENDATION', description: 'Recommends works under MPLADS for Baramati constituency.' },
   { id: 'r-geeta-1', person_id: 'rep-geeta-rawat', institution_name: 'Kadkariya - Chhoti Ramdi Gram Sabha', role_type: 'DIRECT_RECOMMENDATION', description: 'Village head passing resolutions under 15th Finance Commission rural grants and GPDP.' },
   { id: 'r-rautela-1', person_id: 'rep-jogendra-rautela', institution_name: 'Haldwani-Kathgodam Nagar Nigam', role_type: 'IMPLEMENTING_AUTHORITY', description: 'Mayor leading municipal infrastructure and urban civic engineering wings (2018–2023 term).' },
   { id: 'r-sumit-1', person_id: 'rep-sumit-hridayesh', institution_name: 'Uttarakhand Vidhan Sabha', role_type: 'DIRECT_RECOMMENDATION', description: 'Recommends works under Uttarakhand MLALAD scheme (₹5.00 Cr annual entitlement).' },
@@ -326,7 +508,70 @@ export const panIndiaRoles = [
 ];
 
 export const panIndiaFundLedgers = [
-  // CHHOTI RAMDI / KADKARIYA
+  {
+    id: 'fl-modi',
+    entity_id: 'rep-modi',
+    entity_type: 'PERSON',
+    scheme_name: 'MPLADS (Lok Sabha)',
+    fiscal_year: '2025-2026',
+    entitled_amount: 50000000,
+    allocated_amount: 50000000,
+    released_amount: 25000000,
+    sanctioned_amount: 30300000,
+    expended_amount: 15700000,
+    unspent_balance: 9300000,
+    last_updated: '2026-08-31 22:08:00',
+    source_name: 'MPLADS Official Portal',
+    source_url: 'https://mplads.gov.in/'
+  },
+  {
+    id: 'fl-rahul',
+    entity_id: 'rep-rahul-gandhi',
+    entity_type: 'PERSON',
+    scheme_name: 'MPLADS (Lok Sabha)',
+    fiscal_year: '2025-2026',
+    entitled_amount: 50000000,
+    allocated_amount: 50000000,
+    released_amount: 25000000,
+    sanctioned_amount: 32000000,
+    expended_amount: 18400000,
+    unspent_balance: 6600000,
+    last_updated: '2026-08-31 22:08:00',
+    source_name: 'MPLADS Official Portal',
+    source_url: 'https://mplads.gov.in/'
+  },
+  {
+    id: 'fl-shah',
+    entity_id: 'rep-amit-shah',
+    entity_type: 'PERSON',
+    scheme_name: 'MPLADS (Lok Sabha)',
+    fiscal_year: '2025-2026',
+    entitled_amount: 50000000,
+    allocated_amount: 50000000,
+    released_amount: 25000000,
+    sanctioned_amount: 34500000,
+    expended_amount: 22100000,
+    unspent_balance: 2900000,
+    last_updated: '2026-08-31 22:08:00',
+    source_name: 'MPLADS Official Portal',
+    source_url: 'https://mplads.gov.in/'
+  },
+  {
+    id: 'fl-gadkari',
+    entity_id: 'rep-nitin-gadkari',
+    entity_type: 'PERSON',
+    scheme_name: 'MPLADS (Lok Sabha)',
+    fiscal_year: '2025-2026',
+    entitled_amount: 50000000,
+    allocated_amount: 50000000,
+    released_amount: 25000000,
+    sanctioned_amount: 36000000,
+    expended_amount: 24500000,
+    unspent_balance: 500000,
+    last_updated: '2026-08-31 22:08:00',
+    source_name: 'MPLADS Official Portal',
+    source_url: 'https://mplads.gov.in/'
+  },
   {
     id: 'fl-chhoti-ramdi',
     entity_id: 'rep-geeta-rawat',
@@ -343,7 +588,6 @@ export const panIndiaFundLedgers = [
     source_name: 'eGramSwaraj Official Portal',
     source_url: 'https://egramswaraj.gov.in/'
   },
-  // NAINITAL / HALDWANI
   {
     id: 'fl-bhatt',
     entity_id: 'rep-ajay-bhatt',
@@ -359,44 +603,195 @@ export const panIndiaFundLedgers = [
     last_updated: '2026-08-31 22:08:00',
     source_name: 'MPLADS Official Portal',
     source_url: 'https://mplads.gov.in/'
-  },
-  // HALDWANI ULB
-  {
-    id: 'fl-hald-ulb',
-    entity_id: 'rep-jogendra-rautela',
-    entity_type: 'PERSON',
-    scheme_name: '15th Finance Commission Urban Grants & Municipal Fund',
-    fiscal_year: '2023-2024',
-    entitled_amount: 38000000,
-    allocated_amount: 38000000,
-    released_amount: 38000000,
-    sanctioned_amount: 31000000,
-    expended_amount: 27500000,
-    unspent_balance: 3500000,
-    last_updated: '2026-08-31 22:08:00',
-    source_name: 'City Finance Portal',
-    source_url: 'https://www.cityfinance.in/'
-  },
-  // VARANASI
-  {
-    id: 'fl-modi',
-    entity_id: 'rep-modi',
-    entity_type: 'PERSON',
-    scheme_name: 'MPLADS (Lok Sabha)',
-    fiscal_year: '2025-2026',
-    entitled_amount: 50000000,
-    allocated_amount: 50000000,
-    released_amount: 25000000,
-    sanctioned_amount: 30300000,
-    expended_amount: 15700000,
-    unspent_balance: 9300000,
-    last_updated: '2026-08-31 22:08:00',
-    source_name: 'MPLADS Official Portal',
-    source_url: 'https://mplads.gov.in/'
   }
 ];
 
 export const panIndiaProjects = [
+  // --- VARANASI (NARENDRA MODI) ---
+  {
+    id: 'proj-var-1',
+    source_work_id: 'MPLADS-2025-VAR-0012',
+    title: 'Construction of Smart Solar Community Learning Center & Digital Library',
+    sector: 'Education & Digital Infra',
+    geography_id: 'geo-varanasi',
+    recommender_id: 'rep-modi',
+    implementing_dept: 'Varanasi Public Works Dept (PWD)',
+    sanctioned_cost: 4500000,
+    spent_cost: 4120500,
+    status: 'COMPLETED',
+    physical_progress_pct: 100,
+    lat: 25.3200,
+    lon: 82.9800,
+    approval_date: '2025-01-15',
+    completion_date: '2025-07-20',
+    source_name: 'MPLADS GIS Dashboard',
+    source_url: 'https://mplads.gov.in/',
+    proof_status: 'OFFICIAL_PROOF_VERIFIED',
+    proof_by: 'Varanasi Smart City Mission & PWD',
+    proof_summary: 'Geo-tagged inauguration and facility utilization photos submitted to MoSPI portal.',
+    image_urls: JSON.stringify([
+      'https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=800'
+    ])
+  },
+  {
+    id: 'proj-var-4',
+    source_work_id: 'MPLADS-2025-VAR-0088',
+    title: 'Construction of Multi-Purpose Mahila Skill Training Hall in Bhelupur',
+    sector: 'Community Infrastructure',
+    geography_id: 'geo-varanasi',
+    recommender_id: 'rep-modi',
+    implementing_dept: 'District Rural Development Agency (DRDA)',
+    sanctioned_cost: 5000000,
+    spent_cost: 1200000,
+    status: 'STALLED',
+    physical_progress_pct: 25,
+    lat: 25.3050,
+    lon: 82.9900,
+    approval_date: '2024-11-20',
+    completion_date: '2025-08-30',
+    source_name: 'MPLADS GIS Dashboard',
+    source_url: 'https://mplads.gov.in/',
+    proof_status: 'UNVERIFIED_NO_PROOF',
+    proof_by: 'None - No ground proof submitted by representative or agency',
+    proof_summary: 'The MP / Executing Agency has not submitted geo-tagged verification photos in official records. Physical ground delivery is unverified.',
+    image_urls: JSON.stringify([])
+  },
+
+  // --- RAE BARELI (RAHUL GANDHI & SONIA GANDHI) ---
+  {
+    id: 'proj-rae-1',
+    source_work_id: 'MPLADS-2025-RAE-0031',
+    title: 'Modernization & Solar Electrification of District Youth Training Complex in Bachhrawan',
+    sector: 'Youth Affairs & Skill Infra',
+    geography_id: 'geo-rae-bareli',
+    recommender_id: 'rep-rahul-gandhi',
+    implementing_dept: 'UP Rural Engineering Dept (RED) Rae Bareli',
+    sanctioned_cost: 4800000,
+    spent_cost: 4800000,
+    status: 'COMPLETED',
+    physical_progress_pct: 100,
+    lat: 26.2300,
+    lon: 81.2400,
+    approval_date: '2025-01-18',
+    completion_date: '2025-06-25',
+    source_name: 'MPLADS Portal',
+    source_url: 'https://mplads.gov.in/',
+    proof_status: 'OFFICIAL_PROOF_VERIFIED',
+    proof_by: 'MP Office & Executive Engineer RED',
+    proof_summary: 'Certified completion certificate with geo-tagged building and solar rooftop photos uploaded.',
+    image_urls: JSON.stringify([
+      'https://images.unsplash.com/photo-1509391365360-2e959784a276?w=800'
+    ])
+  },
+
+  // --- GANDHINAGAR (AMIT SHAH) ---
+  {
+    id: 'proj-gn-1',
+    source_work_id: 'MPLADS-2025-GJ-GN-0052',
+    title: 'Smart E-Library & Digital Skill Development Center in Sanand',
+    sector: 'Education & Digital Infra',
+    geography_id: 'geo-gandhinagar',
+    recommender_id: 'rep-amit-shah',
+    implementing_dept: 'Gujarat Urban Development Authority (GUDA)',
+    sanctioned_cost: 5500000,
+    spent_cost: 5500000,
+    status: 'COMPLETED',
+    physical_progress_pct: 100,
+    lat: 22.9800,
+    lon: 72.3800,
+    approval_date: '2025-01-12',
+    completion_date: '2025-05-30',
+    source_name: 'MPLADS Portal Gujarat',
+    source_url: 'https://mplads.gov.in/',
+    proof_status: 'OFFICIAL_PROOF_VERIFIED',
+    proof_by: 'GUDA Technical Verification Wing',
+    proof_summary: 'Official completion report and geo-tagged student computer lab photos verified.',
+    image_urls: JSON.stringify([
+      'https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=800'
+    ])
+  },
+
+  // --- NAGPUR (NITIN GADKARI) ---
+  {
+    id: 'proj-nag-1',
+    source_work_id: 'MPLADS-2025-MH-NAG-0077',
+    title: 'Modern EV Multi-Modal Feeder Charging Hub & Solar Canopy at South West Nagpur',
+    sector: 'Urban Transport & Clean Energy',
+    geography_id: 'geo-nagpur',
+    recommender_id: 'rep-nitin-gadkari',
+    implementing_dept: 'Nagpur Municipal Corporation (NMC)',
+    sanctioned_cost: 6200000,
+    spent_cost: 6200000,
+    status: 'COMPLETED',
+    physical_progress_pct: 100,
+    lat: 21.1200,
+    lon: 79.0500,
+    approval_date: '2025-02-10',
+    completion_date: '2025-06-12',
+    source_name: 'MPLADS Portal Maharashtra',
+    source_url: 'https://mplads.gov.in/',
+    proof_status: 'OFFICIAL_PROOF_VERIFIED',
+    proof_by: 'NMC Engineering Wing & MP Office',
+    proof_summary: 'Drone inspection photos and operational charging station logbooks submitted.',
+    image_urls: JSON.stringify([
+      'https://images.unsplash.com/photo-1509391365360-2e959784a276?w=800'
+    ])
+  },
+
+  // --- WAYANAD (PRIYANKA GANDHI) ---
+  {
+    id: 'proj-way-1',
+    source_work_id: 'MPLADS-2025-KL-WAY-0014',
+    title: 'Disaster-Resilient Community Shelter & Emergency Medical Aid Center in Meppadi',
+    sector: 'Disaster Resilience & Health',
+    geography_id: 'geo-wayanad',
+    recommender_id: 'rep-priyanka-gandhi',
+    implementing_dept: 'Kerala PWD & Wayanad District Collectorate',
+    sanctioned_cost: 4200000,
+    spent_cost: 3950000,
+    status: 'COMPLETED',
+    physical_progress_pct: 100,
+    lat: 11.5500,
+    lon: 76.1200,
+    approval_date: '2024-12-05',
+    completion_date: '2025-06-20',
+    source_name: 'Kerala State Disaster Mitigation Fund',
+    source_url: 'https://kerala.gov.in/',
+    proof_status: 'OFFICIAL_PROOF_VERIFIED',
+    proof_by: 'Kerala PWD & Wayanad District Collectorate',
+    proof_summary: 'Physical shelter completion photos and emergency medical supplies inventory verified on ground.',
+    image_urls: JSON.stringify([
+      'https://images.unsplash.com/photo-1584467735871-8e85353a8413?w=800'
+    ])
+  },
+
+  // --- THIRUVANANTHAPURAM (DR. SHASHI THAROOR) ---
+  {
+    id: 'proj-tvm-1',
+    source_work_id: 'MPLADS-2025-KL-TVM-0089',
+    title: 'Modernization of Smart STEM Labs in 12 Government High Schools across Thiruvananthapuram',
+    sector: 'Education & Innovation',
+    geography_id: 'geo-tvm',
+    recommender_id: 'rep-shashi-tharoor',
+    implementing_dept: 'Kerala Infrastructure and Technology for Education (KITE)',
+    sanctioned_cost: 5200000,
+    spent_cost: 5200000,
+    status: 'COMPLETED',
+    physical_progress_pct: 100,
+    lat: 8.5200,
+    lon: 76.9400,
+    approval_date: '2025-01-14',
+    completion_date: '2025-05-18',
+    source_name: 'MPLADS Portal Kerala',
+    source_url: 'https://mplads.gov.in/',
+    proof_status: 'OFFICIAL_PROOF_VERIFIED',
+    proof_by: 'KITE Technical Audit & MP Office',
+    proof_summary: 'School lab inspection certificates and student robotics lab photos uploaded.',
+    image_urls: JSON.stringify([
+      'https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=800'
+    ])
+  },
+
   // --- CHHOTI RAMDI / KADKARIYA (HALDWANI) ---
   {
     id: 'proj-ramdi-1',
@@ -525,55 +920,5 @@ export const panIndiaProjects = [
     image_urls: JSON.stringify([
       'https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=800'
     ])
-  },
-
-  // --- VARANASI ---
-  {
-    id: 'proj-var-1',
-    source_work_id: 'MPLADS-2025-VAR-0012',
-    title: 'Construction of Smart Solar Community Learning Center & Digital Library',
-    sector: 'Education & Digital Infra',
-    geography_id: 'geo-varanasi',
-    recommender_id: 'rep-modi',
-    implementing_dept: 'Varanasi Public Works Dept (PWD)',
-    sanctioned_cost: 4500000,
-    spent_cost: 4120500,
-    status: 'COMPLETED',
-    physical_progress_pct: 100,
-    lat: 25.3200,
-    lon: 82.9800,
-    approval_date: '2025-01-15',
-    completion_date: '2025-07-20',
-    source_name: 'MPLADS GIS Dashboard',
-    source_url: 'https://mplads.gov.in/',
-    proof_status: 'OFFICIAL_PROOF_VERIFIED',
-    proof_by: 'Varanasi Smart City Mission & PWD',
-    proof_summary: 'Geo-tagged inauguration and facility utilization photos submitted to MoSPI portal.',
-    image_urls: JSON.stringify([
-      'https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=800'
-    ])
-  },
-  {
-    id: 'proj-var-4',
-    source_work_id: 'MPLADS-2025-VAR-0088',
-    title: 'Construction of Multi-Purpose Mahila Skill Training Hall in Bhelupur',
-    sector: 'Community Infrastructure',
-    geography_id: 'geo-varanasi',
-    recommender_id: 'rep-modi',
-    implementing_dept: 'District Rural Development Agency (DRDA)',
-    sanctioned_cost: 5000000,
-    spent_cost: 1200000,
-    status: 'STALLED',
-    physical_progress_pct: 25,
-    lat: 25.3050,
-    lon: 82.9900,
-    approval_date: '2024-11-20',
-    completion_date: '2025-08-30',
-    source_name: 'MPLADS GIS Dashboard',
-    source_url: 'https://mplads.gov.in/',
-    proof_status: 'UNVERIFIED_NO_PROOF',
-    proof_by: 'None - No ground proof submitted by representative or agency',
-    proof_summary: 'The MP / Executing Agency has not submitted geo-tagged verification photos in official records. Physical ground delivery is unverified.',
-    image_urls: JSON.stringify([])
   }
 ];

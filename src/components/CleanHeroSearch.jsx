@@ -48,15 +48,17 @@ export default function CleanHeroSearch({ onSelectArea, onSelectRep, onSelectPro
   };
 
   const sampleChips = [
-    { label: 'Choti Ramdi (Kadkariya Gram Sabha)', id: 'geo-chhoti-ramdi' },
+    { label: 'Narendra Modi (Varanasi)', repId: 'rep-modi' },
+    { label: 'Rahul Gandhi (Rae Bareli)', repId: 'rep-rahul-gandhi' },
+    { label: 'Amit Shah (Gandhinagar)', repId: 'rep-amit-shah' },
+    { label: 'Sonia Gandhi', repId: 'rep-sonia-gandhi' },
+    { label: 'Nitin Gadkari (Nagpur)', repId: 'rep-nitin-gadkari' },
+    { label: 'Choti Ramdi (Kadkariya GP)', id: 'geo-chhoti-ramdi' },
+    { label: 'Wayanad (Priyanka Gandhi)', repId: 'rep-priyanka-gandhi' },
+    { label: 'Shashi Tharoor (TVM)', repId: 'rep-shashi-tharoor' },
     { label: 'Haldwani', id: 'geo-nainital' },
-    { label: 'Wayanad', id: 'geo-wayanad' },
-    { label: 'Guwahati', id: 'geo-guwahati' },
-    { label: 'Varanasi', id: 'geo-varanasi' },
-    { label: 'Shillong', id: 'geo-shillong' },
-    { label: 'Thiruvananthapuram', id: 'geo-tvm' },
-    { label: 'water', id: 'geo-chhoti-ramdi' },
-    { label: 'road', id: 'geo-chhoti-ramdi' }
+    { label: 'Amritsar', id: 'rag-2-amritsar' },
+    { label: 'Baramati (Supriya Sule)', repId: 'rep-supriya-sule' }
   ];
 
   return (
@@ -169,7 +171,13 @@ export default function CleanHeroSearch({ onSelectArea, onSelectRep, onSelectPro
               {sampleChips.map((chip, idx) => (
                 <button
                   key={idx}
-                  onClick={() => onSelectArea(chip.id)}
+                  onClick={() => {
+                    if (chip.repId) {
+                      onSelectRep(chip.repId);
+                    } else if (chip.id) {
+                      onSelectArea(chip.id);
+                    }
+                  }}
                   className="text-slate-300 hover:text-white hover:underline transition-colors cursor-pointer"
                 >
                   {chip.label}{idx < sampleChips.length - 1 ? ',' : ''}
