@@ -48,7 +48,10 @@ export default function CleanAreaView({ areaId = 'geo-varanasi', onSelectRep, on
     );
   }
 
-  const { geography, representatives = [], fund_ledgers = [], projects = [] } = areaData;
+  const geography = areaData?.geography || {};
+  const representatives = areaData?.representatives || [];
+  const fundLedgers = areaData?.fund_ledgers || areaData?.fundLedgers || [];
+  const projects = areaData?.projects || [];
 
   // Extract unique sectors
   const sectors = ['ALL', ...Array.from(new Set(projects.map(p => p.sector).filter(Boolean)))];
