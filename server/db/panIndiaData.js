@@ -68,7 +68,10 @@ export const panIndiaPersons = [
     questions_asked: 0,
     debates_participated: 24,
     data_coverage_pct: 95.0,
-    last_refreshed: '2026-08-31 22:08:00'
+    last_refreshed: '2026-08-31 22:08:00',
+    tenure_label: 'Nov 2019 – Nov 2024 (Village Head)',
+    tenure_status: 'CARETAKER_PENDING_POLLS',
+    status_note: 'Elected Gram Pradhan for Kadkariya - Chhoti Ramdi Gram Sabha. Local rural governance under Gram Sabha resolution.'
   },
   {
     id: 'rep-jogendra-rautela',
@@ -83,7 +86,10 @@ export const panIndiaPersons = [
     questions_asked: 0,
     debates_participated: 48,
     data_coverage_pct: 91.0,
-    last_refreshed: '2026-08-31 22:08:00'
+    last_refreshed: '2026-08-31 22:08:00',
+    tenure_label: 'Dec 2018 – Dec 2023 (Past Mayor)',
+    tenure_status: 'PAST_TERM_ADMINISTERED',
+    status_note: 'Municipal board completed statutory 5-year term on 1 Dec 2023. Haldwani-Kathgodam Nagar Nigam is currently administered by the State Government-appointed Municipal Administrator (District Magistrate / Municipal Commissioner Pankaj Upadhyay) pending fresh local body elections in Uttarakhand. Latest official elected council roster pending update by State Election Commission.'
   },
   {
     id: 'rep-sumit-hridayesh',
@@ -98,7 +104,10 @@ export const panIndiaPersons = [
     questions_asked: 51,
     debates_participated: 24,
     data_coverage_pct: 89.0,
-    last_refreshed: '2026-08-31 22:08:00'
+    last_refreshed: '2026-08-31 22:08:00',
+    tenure_label: 'March 2022 – March 2027 (Incumbent MLA)',
+    tenure_status: 'CURRENT_INCUMBENT',
+    status_note: 'Currently serving in 5th Uttarakhand Legislative Assembly representing Haldwani (AC-059).'
   },
   {
     id: 'rep-ajay-bhatt',
@@ -113,7 +122,10 @@ export const panIndiaPersons = [
     questions_asked: 34,
     debates_participated: 18,
     data_coverage_pct: 93.0,
-    last_refreshed: '2026-08-31 22:08:00'
+    last_refreshed: '2026-08-31 22:08:00',
+    tenure_label: 'June 2024 – May 2029 (Incumbent MP)',
+    tenure_status: 'CURRENT_INCUMBENT',
+    status_note: 'Currently serving in 18th Lok Sabha representing Nainital-Udhamsingh Nagar (PC-054).'
   },
 
   // UTTAR PRADESH
@@ -130,7 +142,10 @@ export const panIndiaPersons = [
     questions_asked: 0,
     debates_participated: 18,
     data_coverage_pct: 92.0,
-    last_refreshed: '2026-08-31 22:08:00'
+    last_refreshed: '2026-08-31 22:08:00',
+    tenure_label: 'May 2021 – May 2026 (Incumbent Pradhan)',
+    tenure_status: 'CURRENT_INCUMBENT',
+    status_note: 'Elected Gram Pradhan for Chiraigaon Gram Panchayat, Varanasi.'
   },
   {
     id: 'rep-modi',
@@ -145,7 +160,10 @@ export const panIndiaPersons = [
     questions_asked: 0,
     debates_participated: 14,
     data_coverage_pct: 96.5,
-    last_refreshed: '2026-08-31 22:08:00'
+    last_refreshed: '2026-08-31 22:08:00',
+    tenure_label: 'June 2024 – May 2029 (Incumbent MP)',
+    tenure_status: 'CURRENT_INCUMBENT',
+    status_note: 'Currently serving in 18th Lok Sabha representing Varanasi (PC-208).'
   },
   {
     id: 'rep-saurabh',
@@ -160,7 +178,10 @@ export const panIndiaPersons = [
     questions_asked: 42,
     debates_participated: 28,
     data_coverage_pct: 88.0,
-    last_refreshed: '2026-08-31 22:08:00'
+    last_refreshed: '2026-08-31 22:08:00',
+    tenure_label: 'March 2022 – March 2027 (Incumbent MLA)',
+    tenure_status: 'CURRENT_INCUMBENT',
+    status_note: 'Elected Member of 18th UP Vidhan Sabha representing Varanasi Cantt.'
   },
   {
     id: 'rep-rajnath',
@@ -175,7 +196,10 @@ export const panIndiaPersons = [
     questions_asked: 2,
     debates_participated: 22,
     data_coverage_pct: 94.0,
-    last_refreshed: '2026-08-31 22:08:00'
+    last_refreshed: '2026-08-31 22:08:00',
+    tenure_label: 'June 2024 – May 2029 (Incumbent MP)',
+    tenure_status: 'CURRENT_INCUMBENT',
+    status_note: 'Currently serving in 18th Lok Sabha representing Lucknow (PC-185).'
   },
 
   // KERALA
@@ -192,7 +216,10 @@ export const panIndiaPersons = [
     questions_asked: 28,
     debates_participated: 16,
     data_coverage_pct: 93.0,
-    last_refreshed: '2026-08-31 22:08:00'
+    last_refreshed: '2026-08-31 22:08:00',
+    tenure_label: 'Nov 2024 – May 2029 (Incumbent MP)',
+    tenure_status: 'CURRENT_INCUMBENT',
+    status_note: 'Elected Member of 18th Lok Sabha representing Wayanad (PC-014).'
   },
   {
     id: 'rep-shashi-tharoor',
@@ -207,7 +234,10 @@ export const panIndiaPersons = [
     questions_asked: 112,
     debates_participated: 64,
     data_coverage_pct: 97.0,
-    last_refreshed: '2026-08-31 22:08:00'
+    last_refreshed: '2026-08-31 22:08:00',
+    tenure_label: 'June 2024 – May 2029 (Incumbent MP)',
+    tenure_status: 'CURRENT_INCUMBENT',
+    status_note: 'Currently serving 4th term in Lok Sabha representing Thiruvananthapuram (PC-020).'
   },
 
   // NORTH EAST
@@ -224,22 +254,10 @@ export const panIndiaPersons = [
     questions_asked: 45,
     debates_participated: 19,
     data_coverage_pct: 91.0,
-    last_refreshed: '2026-08-31 22:08:00'
-  },
-  {
-    id: 'rep-gaurav-gogoi',
-    name: 'Gaurav Gogoi',
-    party: 'Indian National Congress (INC)',
-    office_title: 'Member of Parliament (Lok Sabha - Jorhat)',
-    photo_url: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=300',
-    tenure_start: '2024-06-04',
-    tenure_end: '2029-05-31',
-    geography_id: 'geo-jorhat',
-    attendance_pct: 94.8,
-    questions_asked: 98,
-    debates_participated: 52,
-    data_coverage_pct: 95.0,
-    last_refreshed: '2026-08-31 22:08:00'
+    last_refreshed: '2026-08-31 22:08:00',
+    tenure_label: 'June 2024 – May 2029 (Incumbent MP)',
+    tenure_status: 'CURRENT_INCUMBENT',
+    status_note: 'Elected Member of 18th Lok Sabha representing Guwahati (PC-307).'
   },
   {
     id: 'rep-ricky-syngkon',
@@ -254,7 +272,10 @@ export const panIndiaPersons = [
     questions_asked: 38,
     debates_participated: 21,
     data_coverage_pct: 89.0,
-    last_refreshed: '2026-08-31 22:08:00'
+    last_refreshed: '2026-08-31 22:08:00',
+    tenure_label: 'June 2024 – May 2029 (Incumbent MP)',
+    tenure_status: 'CURRENT_INCUMBENT',
+    status_note: 'Elected Member of 18th Lok Sabha representing Shillong (PC-351).'
   },
 
   // SOUTH & WEST
@@ -271,7 +292,10 @@ export const panIndiaPersons = [
     questions_asked: 68,
     debates_participated: 34,
     data_coverage_pct: 92.0,
-    last_refreshed: '2026-08-31 22:08:00'
+    last_refreshed: '2026-08-31 22:08:00',
+    tenure_label: 'June 2024 – May 2029 (Incumbent MP)',
+    tenure_status: 'CURRENT_INCUMBENT',
+    status_note: 'Elected Member of 18th Lok Sabha representing Bangalore South (PC-028).'
   },
   {
     id: 'rep-bansuri',
@@ -286,20 +310,19 @@ export const panIndiaPersons = [
     questions_asked: 32,
     debates_participated: 18,
     data_coverage_pct: 92.0,
-    last_refreshed: '2026-08-31 22:08:00'
+    last_refreshed: '2026-08-31 22:08:00',
+    tenure_label: 'June 2024 – May 2029 (Incumbent MP)',
+    tenure_status: 'CURRENT_INCUMBENT',
+    status_note: 'Elected Member of 18th Lok Sabha representing New Delhi (PC-071).'
   }
 ];
 
 export const panIndiaRoles = [
   // NAINITAL / HALDWANI / CHHOTI RAMDI
   { id: 'r-geeta-1', person_id: 'rep-geeta-rawat', institution_name: 'Kadkariya - Chhoti Ramdi Gram Sabha', role_type: 'DIRECT_RECOMMENDATION', description: 'Village head passing resolutions under 15th Finance Commission rural grants and GPDP.' },
-  { id: 'r-rautela-1', person_id: 'rep-jogendra-rautela', institution_name: 'Haldwani-Kathgodam Nagar Nigam', role_type: 'IMPLEMENTING_AUTHORITY', description: 'Mayor leading municipal infrastructure and urban civic engineering wings.' },
+  { id: 'r-rautela-1', person_id: 'rep-jogendra-rautela', institution_name: 'Haldwani-Kathgodam Nagar Nigam', role_type: 'IMPLEMENTING_AUTHORITY', description: 'Mayor leading municipal infrastructure and urban civic engineering wings (2018–2023 term).' },
   { id: 'r-sumit-1', person_id: 'rep-sumit-hridayesh', institution_name: 'Uttarakhand Vidhan Sabha', role_type: 'DIRECT_RECOMMENDATION', description: 'Recommends works under Uttarakhand MLALAD scheme (₹5.00 Cr annual entitlement).' },
-  { id: 'r-bhatt-1', person_id: 'rep-ajay-bhatt', institution_name: 'Lok Sabha / MoSPI', role_type: 'DIRECT_RECOMMENDATION', description: 'Recommends works under MPLADS for Nainital & Haldwani assembly segments.' },
-
-  // VARANASI
-  { id: 'r-modi-1', person_id: 'rep-modi', institution_name: 'Lok Sabha / MoSPI', role_type: 'DIRECT_RECOMMENDATION', description: 'Recommends works under MPLADS guidelines up to ₹5.00 Cr annual entitlement.' },
-  { id: 'r-saurabh-1', person_id: 'rep-saurabh', institution_name: 'UP Vidhan Sabha', role_type: 'DIRECT_RECOMMENDATION', description: 'Recommends works under UP MLALAD scheme.' }
+  { id: 'r-bhatt-1', person_id: 'rep-ajay-bhatt', institution_name: 'Lok Sabha / MoSPI', role_type: 'DIRECT_RECOMMENDATION', description: 'Recommends works under MPLADS for Nainital & Haldwani assembly segments.' }
 ];
 
 export const panIndiaFundLedgers = [
@@ -337,6 +360,23 @@ export const panIndiaFundLedgers = [
     source_name: 'MPLADS Official Portal',
     source_url: 'https://mplads.gov.in/'
   },
+  // HALDWANI ULB
+  {
+    id: 'fl-hald-ulb',
+    entity_id: 'rep-jogendra-rautela',
+    entity_type: 'PERSON',
+    scheme_name: '15th Finance Commission Urban Grants & Municipal Fund',
+    fiscal_year: '2023-2024',
+    entitled_amount: 38000000,
+    allocated_amount: 38000000,
+    released_amount: 38000000,
+    sanctioned_amount: 31000000,
+    expended_amount: 27500000,
+    unspent_balance: 3500000,
+    last_updated: '2026-08-31 22:08:00',
+    source_name: 'City Finance Portal',
+    source_url: 'https://www.cityfinance.in/'
+  },
   // VARANASI
   {
     id: 'fl-modi',
@@ -350,23 +390,6 @@ export const panIndiaFundLedgers = [
     sanctioned_amount: 30300000,
     expended_amount: 15700000,
     unspent_balance: 9300000,
-    last_updated: '2026-08-31 22:08:00',
-    source_name: 'MPLADS Official Portal',
-    source_url: 'https://mplads.gov.in/'
-  },
-  // WAYANAD
-  {
-    id: 'fl-wayanad',
-    entity_id: 'rep-priyanka-gandhi',
-    entity_type: 'PERSON',
-    scheme_name: 'MPLADS (Lok Sabha)',
-    fiscal_year: '2025-2026',
-    entitled_amount: 50000000,
-    allocated_amount: 50000000,
-    released_amount: 25000000,
-    sanctioned_amount: 24500000,
-    expended_amount: 18100000,
-    unspent_balance: 6900000,
     last_updated: '2026-08-31 22:08:00',
     source_name: 'MPLADS Official Portal',
     source_url: 'https://mplads.gov.in/'
@@ -427,13 +450,13 @@ export const panIndiaProjects = [
     ])
   },
 
-  // --- HALDWANI / NAINITAL (UTTARAKHAND) ---
+  // --- HALDWANI ULB & NAINITAL (UTTARAKHAND) ---
   {
     id: 'proj-hald-1',
     source_work_id: 'MPLADS-2025-UK-NAI-0019',
     title: 'Construction of Hill Slope Storm Drainage & Retaining Wall in Kathgodam Foothills',
     sector: 'Flood Management & Drainage',
-    geography_id: 'geo-nainital',
+    geography_id: 'geo-haldwani-ulb',
     recommender_id: 'rep-ajay-bhatt',
     implementing_dept: 'Uttarakhand PWD Haldwani Division',
     sanctioned_cost: 6500000,
@@ -458,7 +481,7 @@ export const panIndiaProjects = [
     source_work_id: 'MPLADS-2025-UK-NAI-0042',
     title: 'Solar High-Mast Street Lighting & EV Public Charging Stations in Haldwani Market',
     sector: 'Renewable Energy & Urban Infra',
-    geography_id: 'geo-nainital',
+    geography_id: 'geo-haldwani-ulb',
     recommender_id: 'rep-ajay-bhatt',
     implementing_dept: 'Uttarakhand Renewable Energy Development Agency (UREDA)',
     sanctioned_cost: 3800000,
@@ -476,6 +499,31 @@ export const panIndiaProjects = [
     proof_summary: 'Commissioning certificate with live meter readings and geo-tagged photos uploaded.',
     image_urls: JSON.stringify([
       'https://images.unsplash.com/photo-1509391365360-2e959784a276?w=800'
+    ])
+  },
+  {
+    id: 'proj-hald-3',
+    source_work_id: 'MLALAD-2025-HALD-0071',
+    title: 'Upgradation of Emergency Ward Infrastructure at Soban Singh Jeena Base Hospital Haldwani',
+    sector: 'Healthcare & Public Health',
+    geography_id: 'geo-haldwani',
+    recommender_id: 'rep-sumit-hridayesh',
+    implementing_dept: 'Directorate of Medical Health Uttarakhand',
+    sanctioned_cost: 4500000,
+    spent_cost: 3100000,
+    status: 'UNDERWAY',
+    physical_progress_pct: 70,
+    lat: 29.2150,
+    lon: 79.5220,
+    approval_date: '2025-03-05',
+    completion_date: '2025-10-30',
+    source_name: 'Uttarakhand Vidhan Sabha LAD Portal',
+    source_url: 'https://uk.gov.in/',
+    proof_status: 'OFFICIAL_PROOF_VERIFIED',
+    proof_by: 'MLA Office & Hospital Administration',
+    proof_summary: 'Medical equipment installation receipts and ward renovation photos verified.',
+    image_urls: JSON.stringify([
+      'https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=800'
     ])
   },
 
@@ -527,59 +575,5 @@ export const panIndiaProjects = [
     proof_by: 'None - No ground proof submitted by representative or agency',
     proof_summary: 'The MP / Executing Agency has not submitted geo-tagged verification photos in official records. Physical ground delivery is unverified.',
     image_urls: JSON.stringify([])
-  },
-
-  // --- WAYANAD (KERALA) ---
-  {
-    id: 'proj-way-1',
-    source_work_id: 'MPLADS-2025-KL-WAY-0008',
-    title: 'Disaster-Resilient Community Shelter & Emergency Medical Aid Center in Meppadi',
-    sector: 'Disaster Relief & Community Infra',
-    geography_id: 'geo-wayanad',
-    recommender_id: 'rep-priyanka-gandhi',
-    implementing_dept: 'Kerala Public Works Dept (Buildings) Wayanad Division',
-    sanctioned_cost: 8500000,
-    spent_cost: 6200000,
-    status: 'UNDERWAY',
-    physical_progress_pct: 75,
-    lat: 11.5520,
-    lon: 76.1240,
-    approval_date: '2025-01-10',
-    completion_date: '2025-12-31',
-    source_name: 'Kerala State Disaster Management & MPLADS',
-    source_url: 'https://mplads.gov.in/',
-    proof_status: 'OFFICIAL_PROOF_VERIFIED',
-    proof_by: 'Kerala PWD & Wayanad District Collectorate',
-    proof_summary: 'Construction inspection photos certified by District Disaster Management Authority.',
-    image_urls: JSON.stringify([
-      'https://images.unsplash.com/photo-1541888946425-d0fbb180c5f5?w=800'
-    ])
-  },
-
-  // --- THIRUVANANTHAPURAM (KERALA) ---
-  {
-    id: 'proj-tvm-1',
-    source_work_id: 'MPLADS-2025-KL-TVM-0031',
-    title: 'Modernization of Smart STEM Labs in 12 Government High Schools across Thiruvananthapuram',
-    sector: 'Education & Technology',
-    geography_id: 'geo-tvm',
-    recommender_id: 'rep-shashi-tharoor',
-    implementing_dept: 'General Education Dept Kerala / KITE',
-    sanctioned_cost: 5800000,
-    spent_cost: 5800000,
-    status: 'COMPLETED',
-    physical_progress_pct: 100,
-    lat: 8.5250,
-    lon: 76.9400,
-    approval_date: '2024-10-18',
-    completion_date: '2025-04-30',
-    source_name: 'KITE Smart School MIS',
-    source_url: 'https://kite.kerala.gov.in/',
-    proof_status: 'OFFICIAL_PROOF_VERIFIED',
-    proof_by: 'KITE Technical Audit & MP Office',
-    proof_summary: 'Equipment delivery receipts and classroom setup photos certified by Headmasters.',
-    image_urls: JSON.stringify([
-      'https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=800'
-    ])
   }
 ];

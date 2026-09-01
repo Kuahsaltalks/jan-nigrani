@@ -205,11 +205,13 @@ export default function CleanAreaView({ areaId = 'geo-chhoti-ramdi', onSelectRep
               ? 'bg-blue-50 text-blue-700 border-blue-200'
               : 'bg-purple-50 text-purple-700 border-purple-200';
 
+            const isIncumbent = rep.tenure_status === 'CURRENT_INCUMBENT';
+
             return (
               <div
                 key={rep.id}
                 onClick={() => onSelectRep(rep.id)}
-                className="bg-white hover:bg-slate-50/80 p-5 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-all cursor-pointer space-y-3 flex flex-col justify-between"
+                className="bg-white hover:bg-slate-50/80 p-5 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-all cursor-pointer space-y-3 flex flex-col justify-between group"
               >
                 <div className="space-y-3">
                   <div className="flex items-center gap-3">
@@ -219,10 +221,17 @@ export default function CleanAreaView({ areaId = 'geo-chhoti-ramdi', onSelectRep
                       className="w-12 h-12 rounded-full object-cover border border-slate-200 shrink-0"
                     />
                     <div className="min-w-0 flex-1">
-                      <span className={`inline-block px-2 py-0.5 rounded-md text-[10px] font-bold uppercase tracking-wider border ${badgeColor}`}>
-                        {badgeLabel}
-                      </span>
-                      <h3 className="font-bold text-slate-900 text-sm leading-tight truncate mt-1">
+                      <div className="flex items-center justify-between gap-1">
+                        <span className={`inline-block px-2 py-0.5 rounded-md text-[10px] font-bold uppercase tracking-wider border ${badgeColor}`}>
+                          {badgeLabel}
+                        </span>
+                        <span className={`text-[9px] font-bold font-mono px-1.5 py-0.5 rounded ${
+                          isIncumbent ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : 'bg-slate-100 text-slate-600 border border-slate-200'
+                        }`}>
+                          {isIncumbent ? '🟢 Current' : '⚪ Past Term'}
+                        </span>
+                      </div>
+                      <h3 className="font-bold text-slate-900 text-sm leading-tight truncate mt-1 group-hover:text-indigo-600 transition-colors">
                         {rep.name}
                       </h3>
                     </div>
@@ -231,12 +240,19 @@ export default function CleanAreaView({ areaId = 'geo-chhoti-ramdi', onSelectRep
                   <div className="space-y-1 text-xs text-slate-500">
                     <p className="line-clamp-2">{rep.office_title}</p>
                     <p className="font-mono text-[11px] text-slate-400">{rep.party}</p>
+                    <div className="text-[11px] font-mono text-slate-600 bg-slate-50 px-2 py-1 rounded-md border border-slate-100 mt-1">
+                      <span className="text-slate-400 block text-[9px] uppercase">Statutory Tenure:</span>
+                      <strong>{rep.tenure_label || `${rep.tenure_start} – ${rep.tenure_end}`}</strong>
+                    </div>
                   </div>
                 </div>
 
                 <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500 font-medium">
                   <span>Attendance: <strong className="text-slate-800">{rep.attendance_pct}%</strong></span>
-                  <ChevronRight className="w-4 h-4 text-slate-400" />
+                  <span className="text-[11px] text-indigo-600 font-semibold group-hover:underline flex items-center gap-0.5">
+                    <span>View Record</span>
+                    <ChevronRight className="w-3.5 h-3.5" />
+                  </span>
                 </div>
               </div>
             );

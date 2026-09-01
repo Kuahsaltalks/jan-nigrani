@@ -69,51 +69,59 @@ app.get('/api/areas/:id', (req, res) => {
   db.get(`SELECT * FROM geographies WHERE id = ? OR lgd_code = ?`, [areaId, areaId], (err, geo) => {
     if (!geo) return res.status(404).json({ error: 'Area not found' });
 
-    // Fetch related representatives across the full 4-tier statutory chain:
-    // 1. Direct rep (e.g. Gram Pradhan)
-    // 2. Child reps (if querying PC/AC)
-    // 3. Parent reps (MLA, MP)
-    // 4. Sibling reps (Mayor of parent ULB)
-    const relatedGeoIds = [
-      geo.id,
-      geo.parent_id,
-      'geo-nainital', 'geo-haldwani', 'geo-haldwani-ulb', 'geo-chhoti-ramdi',
-      'geo-varanasi', 'geo-varanasi-cantt', 'geo-varanasi-ulb', 'geo-chiraigaon',
-      'geo-wayanad', 'geo-kalpetta', 'geo-meppadi-gp', 'geo-tvm', 'geo-tvm-ulb',
-      'geo-guwahati', 'geo-guwahati-ulb', 'geo-shillong', 'geo-bangalore-south', 'geo-bbmp'
-    ];
+    // Build intelligent geography cluster (handles GP -> ULB -> AC -> PC hierarchy)
+    const clusterMap = {
+      'geo-nainital': ['geo-nainital', 'geo-haldwani', 'geo-haldwani-ulb', 'geo-chhoti-ramdi'],
+      'geo-haldwani': ['geo-nainital', 'geo-haldwani', 'geo-haldwani-ulb', 'geo-chhoti-ramdi'],
+      'geo-haldwani-ulb': ['geo-nainital', 'geo-haldwani', 'geo-haldwani-ulb', 'geo-chhoti-ramdi'],
+      'geo-chhoti-ramdi': ['geo-nainital', 'geo-haldwani', 'geo-haldwani-ulb', 'geo-chhoti-ramdi'],
+      'geo-varanasi': ['geo-varanasi', 'geo-varanasi-cantt', 'geo-varanasi-ulb', 'geo-chiraigaon'],
+      'geo-varanasi-cantt': ['geo-varanasi', 'geo-varanasi-cantt', 'geo-varanasi-ulb', 'geo-chiraigaon'],
+      'geo-varanasi-ulb': ['geo-varanasi', 'geo-varanasi-cantt', 'geo-varanasi-ulb', 'geo-chiraigaon'],
+      'geo-chiraigaon': ['geo-varanasi', 'geo-varanasi-cantt', 'geo-varanasi-ulb', 'geo-chiraigaon'],
+      'geo-wayanad': ['geo-wayanad', 'geo-kalpetta', 'geo-meppadi-gp'],
+      'geo-kalpetta': ['geo-wayanad', 'geo-kalpetta', 'geo-meppadi-gp'],
+      'geo-meppadi-gp': ['geo-wayanad', 'geo-kalpetta', 'geo-meppadi-gp'],
+      'geo-tvm': ['geo-tvm', 'geo-tvm-ulb'],
+      'geo-tvm-ulb': ['geo-tvm', 'geo-tvm-ulb'],
+      'geo-guwahati': ['geo-guwahati', 'geo-guwahati-ulb'],
+      'geo-guwahati-ulb': ['geo-guwahati', 'geo-guwahati-ulb'],
+      'geo-bangalore-south': ['geo-bangalore-south', 'geo-bbmp'],
+      'geo-bbmp': ['geo-bangalore-south', 'geo-bbmp']
+    };
+
+    const targetCluster = clusterMap[geo.id] || [geo.id, geo.parent_id].filter(Boolean);
+    const clusterPlaceholders = targetCluster.map(() => '?').join(',');
 
     db.all(`SELECT p.*, g.name as geography_name, g.type as geography_type 
             FROM persons p 
             JOIN geographies g ON p.geography_id = g.id
-            WHERE p.geography_id = ? 
-               OR p.geography_id = ? 
-               OR p.geography_id IN (SELECT id FROM geographies WHERE parent_id = ? OR parent_id = ? OR id = ?)
-               OR g.parent_id = ?`, 
-      [geo.id, geo.parent_id, geo.id, geo.parent_id, geo.parent_id, geo.id], 
+            WHERE p.geography_id IN (${clusterPlaceholders})`, 
+      targetCluster, 
       (err, reps) => {
-        // Fetch 5-account ledgers
         const repIds = (reps || []).map(r => r.id);
-        const placeholders = repIds.length > 0 ? repIds.map(() => '?').join(',') : "''";
+        const repPlaceholders = repIds.length > 0 ? repIds.map(() => '?').join(',') : "''";
         
-        db.all(`SELECT * FROM fund_ledgers WHERE entity_id = ? OR entity_id IN (${placeholders})`, [geo.id, ...repIds], (err, ledgers) => {
-          // Fetch projects for this geography or immediate family
-          db.all(`SELECT p.*, g.name as geo_name, per.name as recommender_name 
-                  FROM projects p
-                  LEFT JOIN geographies g ON p.geography_id = g.id
-                  LEFT JOIN persons per ON p.recommender_id = per.id
-                  WHERE p.geography_id = ? OR p.geography_id = ? OR p.geography_id IN (SELECT id FROM geographies WHERE parent_id = ?)`, 
-            [geo.id, geo.parent_id, geo.id], 
-            (err, projs) => {
-              res.json({
-                geography: geo,
-                representatives: reps || [],
-                fund_ledgers: ledgers || [],
-                projects: projs || []
-              });
-            }
-          );
-        });
+        db.all(`SELECT * FROM fund_ledgers WHERE entity_id IN (${clusterPlaceholders}) OR entity_id IN (${repPlaceholders})`, 
+          [...targetCluster, ...repIds], 
+          (err, ledgers) => {
+            db.all(`SELECT p.*, g.name as geo_name, per.name as recommender_name 
+                    FROM projects p
+                    LEFT JOIN geographies g ON p.geography_id = g.id
+                    LEFT JOIN persons per ON p.recommender_id = per.id
+                    WHERE p.geography_id IN (${clusterPlaceholders})`, 
+              targetCluster, 
+              (err, projs) => {
+                res.json({
+                  geography: geo,
+                  representatives: reps || [],
+                  fund_ledgers: ledgers || [],
+                  projects: projs || []
+                });
+              }
+            );
+          }
+        );
       }
     );
   });

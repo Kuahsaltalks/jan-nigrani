@@ -44,7 +44,10 @@ export function initDatabase() {
         questions_asked INTEGER,
         debates_participated INTEGER,
         data_coverage_pct REAL,
-        last_refreshed TEXT
+        last_refreshed TEXT,
+        tenure_label TEXT,
+        tenure_status TEXT,
+        status_note TEXT
       )`);
 
       // 3. Roles & Attribution Taxonomy
@@ -195,8 +198,14 @@ function seedPanIndiaDatabase(db, resolve, reject) {
     panIndiaGeographies.forEach(g => insertGeo.run(g.id, g.lgd_code, g.name, g.type, g.parent_id, g.state_name, g.lat, g.lon));
     insertGeo.finalize();
 
-    const insertPerson = db.prepare(`INSERT OR REPLACE INTO persons VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`);
-    panIndiaPersons.forEach(p => insertPerson.run(p.id, p.name, p.party, p.office_title, p.photo_url, p.tenure_start, p.tenure_end, p.geography_id, p.attendance_pct, p.questions_asked, p.debates_participated, p.data_coverage_pct, p.last_refreshed));
+    const insertPerson = db.prepare(`INSERT OR REPLACE INTO persons VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`);
+    panIndiaPersons.forEach(p => insertPerson.run(
+      p.id, p.name, p.party, p.office_title, p.photo_url, p.tenure_start, p.tenure_end, p.geography_id,
+      p.attendance_pct, p.questions_asked, p.debates_participated, p.data_coverage_pct, p.last_refreshed,
+      p.tenure_label || `${p.tenure_start} – ${p.tenure_end}`,
+      p.tenure_status || 'CURRENT_INCUMBENT',
+      p.status_note || 'Active tenure in official record.'
+    ));
     insertPerson.finalize();
 
     const insertRole = db.prepare(`INSERT OR REPLACE INTO roles VALUES (?, ?, ?, ?, ?)`);
